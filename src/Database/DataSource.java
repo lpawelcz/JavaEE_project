@@ -29,7 +29,7 @@ public class DataSource
 
 	private void generateTestData() 
 	{
-		userSource.put("admin", "test");
-		userSource.put("user", "passUser");
+		register("admin", "test");
+		register("user", "passUser");
 	}
 }
