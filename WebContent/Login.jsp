@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body> 
-  <form method="post" action="waliduj.jsp">
+  <form method="post" action="Validate.jsp">
         Podaj swój login: <br />
         <input type="text" name="name" /><br /> 
         Podaj swoje hasło: <br />
