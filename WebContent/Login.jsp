@@ -8,8 +8,6 @@
 </head>
 <body> 
   <form method="post" action="Validate.jsp">
-        Podaj numerek: <br />
-        <input type="number" name="userID" /><br /> 
         Podaj swój login: <br />
         <input type="text" name="name" /><br /> 
         Podaj swoje hasło: <br />

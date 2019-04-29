@@ -77,7 +77,7 @@ Session session = factory.getCurrentSession();
 
 try {
 	System.out.println("creating new user object");
-	User tempUser = new User("tytyty3","tytyty");
+	User tempUser = new User("tytyty4","tytyty");
 
 	session.beginTransaction();
 	

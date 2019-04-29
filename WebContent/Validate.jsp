@@ -24,11 +24,12 @@
 
 	<!-- Wyświetlenie nazwy użytkownika. -->
 	Nazwa: <%= user.getName() %><br />
+	pass: <%= user.getPassword() %><br />
 
 	<!-- Logika sprawdzająca poprawność parametrów logowania. -->
 	<% String result = "Dane niepoprawne";
 
-	if(dataSource.userExists(user)) {
+	if(dataSource.userInData(user)) {
 		result = "Poprawny użytkownik oraz hasło";
 		}
 	%>
