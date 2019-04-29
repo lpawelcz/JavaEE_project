@@ -14,6 +14,34 @@ public class ConnectionTest {
 
 		
 //----INSERTING DATA---------------------------------//
+//		SessionFactory factory = new Configuration()
+//				.configure("hibernate.cfg.xml")
+//				.addAnnotatedClass(User.class)
+//				.buildSessionFactory();
+//		
+//		Session session = factory.getCurrentSession();
+//		
+//		try {
+//			System.out.println("creating new user object");
+//			User tempUser = new User("asdf","asdf");
+//
+//			session.beginTransaction();
+//			System.out.println("saving user object");
+//			session.save(tempUser);	
+//			session.getTransaction().commit();
+//			
+//			System.out.println("done");
+//		} finally {
+//			factory.close();
+//		}
+//----INSERTING DATA---------------------------------//	
+		
+		
+		
+		
+		
+		
+		
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(User.class)
@@ -23,35 +51,28 @@ public class ConnectionTest {
 		
 		try {
 			System.out.println("creating new user object");
-			User tempUser = new User("user","user");
+			User tempUser1 = new User("us1","us1");
+			User tempUser2 = new User("us2","us2");
+			User tempUser3 = new User("us3","us3");
 
 			session.beginTransaction();
+			
 			System.out.println("saving user object");
-			session.save(tempUser);	
+			session.save(tempUser1);	
+			session.save(tempUser2);	
+			session.save(tempUser3);	
+			
 			session.getTransaction().commit();
 			
 			System.out.println("done");
 		} finally {
 			factory.close();
 		}
-//----INSERTING DATA---------------------------------//	
 		
 		
 		
-//		String jdbcUrl = "jdbc:mysql://localhost:3306?serverTimezone=UTC";
-//		String user= "root";
-//		String pass= "admin";
-//		
-//		try {
-//			System.out.println("Connecting to database: " + jdbcUrl);
-//			
-//			Connection myConn = DriverManager.getConnection(jdbcUrl, user, pass);
-//			
-//			System.out.println("Connection succesful");
-//		}
-//		catch(Exception e) {
-//			e.printStackTrace();
-//		}
+		
+		
 	}
 
 }
