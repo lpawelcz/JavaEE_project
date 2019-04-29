@@ -30,7 +30,13 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		out.append("Main \nServed at: ").append(request.getContextPath());
+		out.append("<form action=\"http://localhost:8080/Bashownik/Register.jsp\">\r\n" + 
+				"    <input type=\"submit\" value=\"Register\" />\r\n" + 
+				"</form>" + 
+				"<form action=\"http://localhost:8080/Bashownik/Login.jsp\">\r\n" + 
+				"    <input type=\"submit\" value=\"Login\" />\r\n" + 
+				"</form>"
+				);
 	}
 
 	/**

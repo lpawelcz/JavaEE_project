@@ -28,10 +28,10 @@
 	pass: <%= user.getPassword() %><br />
 
 	<!-- Logika sprawdzająca poprawność parametrów logowania. -->
-	<% String result = "Dane niepoprawne";
+	<% String result = "Dane niepoprawne - BLAD";
 
 	if(dataSource.userInData(user)) {
-		result = "Poprawny uzytkownik oraz hasło";
+		result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
 		}
 	%>
 

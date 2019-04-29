@@ -25,6 +25,10 @@
 
 		dataSource.register(user.getName(), user.getPassword());
 	%>
+	
+	<form action="http://localhost:8080/Bashownik/Login.jsp">
+	<input type="submit" value="Login" /></form>
+	
 </form>
 </body>
 </html>
