@@ -1,7 +1,7 @@
 package database.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,7 +17,7 @@ public class OpenQuestion extends Question {
 	}
 	
 	@OneToOne
-	@Column(name = "answerID")
+	@JoinColumn(name = "answerID")
 	private Answer answer;
 	
 	public Answer getAnswer() {

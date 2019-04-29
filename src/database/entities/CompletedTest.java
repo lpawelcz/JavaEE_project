@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,15 +26,15 @@ public class CompletedTest {
 	private int completedtestID;
 	
 	@ManyToOne
-	@Column(name = "userID")
+	@JoinColumn(name = "userID")
 	private User user;
 	
 	@ManyToOne
-	@Column(name = "testID")
+	@JoinColumn(name = "testID")
 	private Test test;
 	
 	@OneToOne
-	@Column(name = "resultID")
+	@JoinColumn(name = "resultID")
 	private Result result;
 	
 	

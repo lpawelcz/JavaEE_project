@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,11 +28,11 @@ public class Opinion {
 	private int opinionID;
 	
 	@ManyToOne
-	@Column(name = "userID")
+	@JoinColumn(name = "userID")
 	private User author;
 	
 	@ManyToOne
-	@Column(name = "testID")
+	@JoinColumn(name = "testID")
 	private Test test;
 	
 	@Column(name = "opinion")

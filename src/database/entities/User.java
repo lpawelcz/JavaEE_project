@@ -31,7 +31,7 @@ public class User {
 	@OneToMany(mappedBy = "completedtestID")
     private List<CompletedTest> completedtests = new ArrayList<CompletedTest>();
 	
-	@OneToMany(mappedBy = "QuestionID")
+	@OneToMany(mappedBy = "questionID")
     private List<Question> questions = new ArrayList<Question>();
 	
 	public User() {}

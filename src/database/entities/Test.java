@@ -35,7 +35,7 @@ public class Test {
 	private int testID;
 	
 	@ManyToOne
-	@Column(name = "userID")
+	@JoinColumn(name = "userID")
 	private User author;
 	
 	@OneToMany(mappedBy = "opinionID")
@@ -46,7 +46,7 @@ public class Test {
     private List<Question> questions = new ArrayList<Question>();
 	
 	@OneToOne
-	@Column(name = "descriptionID")
+	@JoinColumn(name = "descriptionID")
 	private Description description;
 	
 	@Column(name = "isPublic")
