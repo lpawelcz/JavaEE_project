@@ -1,5 +1,8 @@
 package Database;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "User")
@@ -13,11 +16,12 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-//	public User(String name, String password) {
-//		super();
-//		this.name = name;
-//		this.password = password;
-//	}
+	public User() {}
+	public User(String name, String password) {
+		super();
+		this.name = name;
+		this.password = password;
+	}
 
 	public int getuserID(){
 		return userID;
@@ -38,4 +42,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", name=" + name + ", password=" + password + "]";
+	}
+	
 }
