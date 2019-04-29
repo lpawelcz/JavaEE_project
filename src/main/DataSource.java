@@ -1,6 +1,8 @@
-package Database;
+package main;
 
 import java.util.HashMap;
+
+import database.entities.User;
 
 public class DataSource 
 {

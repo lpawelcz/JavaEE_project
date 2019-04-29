@@ -1,10 +1,48 @@
-package Database;
+package database.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CompletedTest")
 public class CompletedTest {
+	
+	public CompletedTest(User user, Test test, Result result) {
+		this.user = user;
+		this.test = test;
+		this.result = result;
+	}
+	public CompletedTest() {}
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "completedtestID")
+	private int completedtestID;
+	
+	@ManyToOne
+	@Column(name = "userID")
 	private User user;
+	
+	@ManyToOne
+	@Column(name = "testID")
 	private Test test;
+	
+	@OneToOne
+	@Column(name = "resultID")
 	private Result result;
 	
+	
+	public int getCompletedtestID() {
+		return completedtestID;
+	}
+	public void setCompletedtestID(int completedtestID) {
+		this.completedtestID = completedtestID;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -23,4 +61,10 @@ public class CompletedTest {
 	public void setResult(Result result) {
 		this.result = result;
 	}
+	@Override
+	public String toString() {
+		return "CompletedTest [completedtestID=" + completedtestID + ", user=" + user + ", test=" + test + ", result="
+				+ result + "]";
+	}
+	
 }

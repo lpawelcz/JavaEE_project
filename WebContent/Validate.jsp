@@ -10,7 +10,7 @@
 	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
 	javastart.jspexample.model w sesji użytkownika. Jeśli znajdzie, to go 
 	wykorzysta, jeśli nie stworzy nowy obiekt klasy user o nazwie "user"-->
-	<jsp:useBean id="user" class="Database.User"
+	<jsp:useBean id="user" class="database.entities.User"
 		scope="session"></jsp:useBean>
 
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
@@ -20,7 +20,7 @@
 
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="dataSource"
-		class="Database.DataSource" scope="session"></jsp:useBean>
+		class="main.DataSource" scope="session"></jsp:useBean>
 
 	<!-- Wyświetlenie nazwy użytkownika. -->
 	Nazwa: <%= user.getName() %><br />

@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import Database.User;
+import database.entities.User;
 
 
 
@@ -77,7 +77,7 @@ Session session = factory.getCurrentSession();
 
 try {
 	System.out.println("creating new user object");
-	User tempUser = new User("tytyty","tytyty");
+	User tempUser = new User("tytyty3","tytyty");
 
 	session.beginTransaction();
 	
