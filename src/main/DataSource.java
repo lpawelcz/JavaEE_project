@@ -120,8 +120,13 @@ public class DataSource
 
 	public void register(String name, String password) 
 	{
-		//userSource.put(name, password);
-		usersData.add(new User(name, password));
+		User tempUser = new User(name, password);
+		session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.save(tempUser);
+		session.getTransaction().commit();	
+		
+		usersDataFromDB.add(tempUser);
 	}
 
 	public boolean userExists(User user) 

@@ -8,9 +8,9 @@
 </head>
 <body> 
   <form method="post" action="Validate.jsp">
-        Podaj swój login: <br />
+        Podaj swoj login: <br />
         <input type="text" name="name" /><br /> 
-        Podaj swoje hasło: <br />
+        Podaj swoje haslo: <br />
         <input type="text" name="password" /><br /> 
         <input type="submit" value="zaloguj">
     </form>

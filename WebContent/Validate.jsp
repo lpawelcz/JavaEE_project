@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
 	javastart.jspexample.model w sesji użytkownika. Jeśli znajdzie, to go 
 	wykorzysta, jeśli nie stworzy nowy obiekt klasy user o nazwie "user"-->
@@ -30,7 +31,7 @@
 	<% String result = "Dane niepoprawne";
 
 	if(dataSource.userInData(user)) {
-		result = "Poprawny użytkownik oraz hasło";
+		result = "Poprawny uzytkownik oraz hasło";
 		}
 	%>
 
