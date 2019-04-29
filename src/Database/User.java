@@ -1,8 +1,8 @@
 package Database;
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "User")
+@Entity
+@Table(name = "User")
 public class User {
 	
 	private int userID;
@@ -15,9 +15,9 @@ public class User {
 //		this.password = password;
 //	}
 
-//	@Id
-//	@Column(name = "userID")
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Id
+	@Column(name = "userID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	public int getuserID(){
 		return userID;
 	}
