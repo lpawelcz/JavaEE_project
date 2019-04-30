@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -11,8 +12,6 @@ import database.entities.User;
 
 public class DataSource 
 {
-
-	//private HashMap<String, String> userSource;
 	private List<User> usersData;
 	private List<User> usersDataFromDB;
 	SessionFactory factory;
@@ -86,21 +85,26 @@ public class DataSource
 
 	public DataSource() 
 	{
-		factory = new Configuration()
-				.configure("hibernate.cfg.xml")
-				.buildSessionFactory();
-		session = factory.getCurrentSession();
 		
+		try {
+			factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+			session = factory.getCurrentSession();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
-		//userSource = new HashMap<String, String>();
 		usersData = new ArrayList<User>();
 		usersDataFromDB = new ArrayList<User>();
 		
+		try {
+			session.beginTransaction();
+			usersDataFromDB = session.createCriteria(User.class).list();
+			session.getTransaction().commit();
+			System.out.println("pobrano userow");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}		
 		
-		session.beginTransaction();
-		usersDataFromDB = session.createCriteria(User.class).list();
-		System.out.println("Zakonczono pobieranie uzytkownikow.");		
-		session.getTransaction().commit();
 		
 	}
 	
@@ -108,10 +112,9 @@ public class DataSource
 	{
 		for(User tempUser : usersDataFromDB)
 		{
-			System.out.println(tempUser);
+//			System.out.println(tempUser);
 			if(user.getName().equals(tempUser.getName()) && user.getPassword().equals(tempUser.getPassword()))
 			{
-				//System.out.println("");
 				return true;
 			}
 		}
@@ -121,50 +124,72 @@ public class DataSource
 	public void register(String name, String password) 
 	{
 		User tempUser = new User(name, password);
-		session = factory.getCurrentSession();
-		session.beginTransaction();
-		session.save(tempUser);
-		session.getTransaction().commit();	
+		
+		try {
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			session.save(tempUser);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		usersDataFromDB.add(tempUser);
 	}
 
 	public boolean userExists(User user) 
 	{
-		if(usersData.contains(user))
-			return true;
-		else
-			return false;
+		for(User tempUser : usersDataFromDB)
+		{
+			if(user.getName().equals(tempUser.getName()))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
+	
 
 	private void generateTestData() 
 	{
-		System.out.println("Start create users.");
+		System.out.println("Start create users");
 		usersData.add(new User("Pitok", "123"));
 		usersData.add(new User("Mirek", "123"));
 	}
 	
 	public void addUsersToDB()
 	{
-		session = factory.getCurrentSession();
-		System.out.println("Starting connect with DB.");
-		session.beginTransaction();
-		
-		System.out.println("Starting adding.");
-		for(User tempUser : usersData)
-		{
-			session.save(tempUser);
-			System.out.println("Saved user, id: " + tempUser.getuserID());
+		try {
+			System.out.println("Starting connect with DB.");
+			
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			
+			System.out.println("Starting adding.");
+			for(User tempUser : usersData)
+			{
+				session.save(tempUser);
+				System.out.println("Saved user, id: " + tempUser.getuserID());
+			}
+
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		session.getTransaction().commit();
 	}
 	
 	public void closeConnectionWithDB()
 	{	
-		session = factory.getCurrentSession();
-		System.out.println("Starting close connection with DB.");
-		session.close();
-		factory.close();
+		try {
+			session = factory.getCurrentSession();
+			System.out.println("Starting close connection with DB.");
+			session.close();
+			factory.close();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
