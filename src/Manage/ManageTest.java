@@ -1,6 +1,5 @@
 package Manage;
 
-import java.util.Formatter;
 import java.util.List;
 
 import org.hibernate.Transaction;
@@ -195,6 +194,29 @@ public class ManageTest extends Manage {
 			System.out.println("done Read");
 			return allTests;
 		}
+		
+	public Test GetTest(int testID) {
+		Test tempTest = null;
+		session = factory.getCurrentSession();
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			tempTest = (Test) session.createQuery("from Test s where s.testID=" + Integer.toString(testID)).uniqueResult();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				throw e;
+			}
+		} finally {
+			session.close();
+		}
+
+		System.out.println("done Read");
+		return tempTest;
+	}
 	//----READING DATA-----------------------------------//	
 
 }

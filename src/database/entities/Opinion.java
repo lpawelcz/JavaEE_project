@@ -74,7 +74,7 @@ public class Opinion {
 	
 	@Override
 	public String toString() {
-		return "Opinion [opinionID=" + opinionID + ", author=" + author + ", test=" + test + ", opinion=" + opinion
+		return "Opinion [opinionID=" + opinionID + ", author=" + author.getName() + ", test=" + test.getTestID() + ", opinion=" + opinion
 				+ ", rate=" + rate + "]";
 	}
 
