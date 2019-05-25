@@ -62,7 +62,7 @@ public class DataSource
 		
 		for(User tempUser : d.usersDataFromDB)
 		{
-			System.out.println("Wczytani u¿ytkownicy: id: " + tempUser.getuserID() + ", name: " + tempUser.getName() + ", password: " + tempUser.getPassword());
+			System.out.println("Wczytani u¿ytkownicy: id: " + tempUser.getUserID() + ", name: " + tempUser.getName() + ", password: " + tempUser.getPassword());
 			//System.out.println(tempUser);
 		}
 		
@@ -170,7 +170,7 @@ public class DataSource
 			for(User tempUser : usersData)
 			{
 				session.save(tempUser);
-				System.out.println("Saved user, id: " + tempUser.getuserID());
+				System.out.println("Saved user, id: " + tempUser.getUserID());
 			}
 
 			session.getTransaction().commit();

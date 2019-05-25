@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import Manage.ManageUser;
 import database.entities.User;
 
 
@@ -11,6 +12,15 @@ import database.entities.User;
 public class ConnectionTest {
 
 	public static void main(String[] args) {
+		
+		ManageUser userManager = new ManageUser();
+		
+		userManager.InsertUser("eloszka1", "12234123");
+		userManager.ListUser();
+		userManager.DeleteUser(8);	// asdf asdf
+		userManager.UpdateUser(1, "dupa");
+		userManager.ListUser();
+		
 
 		
 //----INSERTING DATA---------------------------------//
@@ -66,45 +76,47 @@ public class ConnectionTest {
 //		}
 //----INSERTING MULTIPLE DATA------------------------//	
 		
-//----READING DATA-----------------------------------//
+////----READING DATA-----------------------------------//
+//		
+//		SessionFactory factory = new Configuration()
+//		.configure("hibernate.cfg.xml")
+//		.addAnnotatedClass(User.class)
+//		.buildSessionFactory();
+//
+//Session session = factory.getCurrentSession();
+//
+//try {
+//	System.out.println("creating new user object");
+//	User tempUser = new User("tytyty4","tytyty");
+//
+//	session.beginTransaction();
+//	
+//	System.out.println("saving user object");
+//	session.save(tempUser);	
+//	
+//	session.getTransaction().commit();
+//	
+//	System.out.println("Saved user, id: " + tempUser.getuserID());
+//	
+//	session = factory.getCurrentSession();
+//	session.beginTransaction();
+//	
+//	System.out.println("\nGetting student witch id: " + tempUser.getuserID());
+//	
+//	User readUser = session.get(User.class, tempUser.getuserID());
+//	
+//	System.out.println("get complete: " + readUser);
+//	
+//	session.getTransaction().commit();
+//	
+//	System.out.println("done");
+//} finally {
+//	factory.close();
+//}		
+//		
+////----READING DATA-----------------------------------//
 		
-		SessionFactory factory = new Configuration()
-		.configure("hibernate.cfg.xml")
-		.addAnnotatedClass(User.class)
-		.buildSessionFactory();
-
-Session session = factory.getCurrentSession();
-
-try {
-	System.out.println("creating new user object");
-	User tempUser = new User("tytyty4","tytyty");
-
-	session.beginTransaction();
-	
-	System.out.println("saving user object");
-	session.save(tempUser);	
-	
-	session.getTransaction().commit();
-	
-	System.out.println("Saved user, id: " + tempUser.getuserID());
-	
-	session = factory.getCurrentSession();
-	session.beginTransaction();
-	
-	System.out.println("\nGetting student witch id: " + tempUser.getuserID());
-	
-	User readUser = session.get(User.class, tempUser.getuserID());
-	
-	System.out.println("get complete: " + readUser);
-	
-	session.getTransaction().commit();
-	
-	System.out.println("done");
-} finally {
-	factory.close();
-}		
 		
-//----READING DATA-----------------------------------//	
 		
 		
 	}

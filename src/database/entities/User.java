@@ -27,6 +27,7 @@ public class User {
 
 	@OneToMany(mappedBy = "opinionID")
     private List<Opinion> opinions = new ArrayList<Opinion>();
+//	private List<Opinion> opinions = session.createQuery("from Opinion o where o.GetAuthor().getUserID() = getUserID()").getResultList();
 	
 	@OneToMany(mappedBy = "completedtestID")
     private List<CompletedTest> completedtests = new ArrayList<CompletedTest>();
@@ -52,12 +53,6 @@ public class User {
 	}
 	public void setOpinions(List<Opinion> opinions) {
 		this.opinions = opinions;
-	}
-	public int getuserID(){
-		return userID;
-	}
-	public void setuserID(int userID) {
-		this.userID = userID;
 	}
 
 	public String getName() {
