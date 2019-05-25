@@ -197,6 +197,8 @@ public class ManageOpinion extends Manage {
 		System.out.println("done Read");
 		return allOpinions;
 	}
+	
+	
 	//----READING DATA-----------------------------------//	
 
 }

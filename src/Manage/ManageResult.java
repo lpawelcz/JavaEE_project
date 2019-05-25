@@ -1,6 +1,5 @@
 package Manage;
 
-import java.util.Formatter;
 import java.util.List;
 
 import org.hibernate.Transaction;
