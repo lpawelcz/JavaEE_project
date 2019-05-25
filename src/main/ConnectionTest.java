@@ -14,10 +14,12 @@ import Manage.ManageQuestion;
 import Manage.ManageOpinion;
 import Manage.ManageDescription;
 import Manage.ManageAnswer;
+import Manage.ManageCompletedTest;
 
 import database.entities.User;
 import database.entities.Test;
 import database.entities.Answer;
+import database.entities.Result;
 
 
 
@@ -25,13 +27,78 @@ public class ConnectionTest {
 
 	public static void main(String[] args) {
 		
-//		ManageUser userManager = new ManageUser();
-//		ManageTest testManager = new ManageTest();
-//		ManageResult resultManager = new ManageResult();
+		ManageUser userManager = new ManageUser();
+		ManageTest testManager = new ManageTest();
+		ManageResult resultManager = new ManageResult();
 //		ManageQuestion questionManager = new ManageQuestion();
 //		ManageOpinion opinionManager = new ManageOpinion();		
 //		ManageDescription descriptionManager = new ManageDescription();
-		ManageAnswer answerManager = new ManageAnswer();
+//		ManageAnswer answerManager = new ManageAnswer();
+		ManageCompletedTest completedtestManager = new ManageCompletedTest();
+		
+		userManager.InsertUser("pierwszy", "12234123");
+		userManager.InsertUser("John", "12234123");
+		userManager.InsertUser("asdf", "12234123");
+		userManager.InsertUser("eee", "12234123");
+		userManager.InsertUser("tyty", "12234123");
+		userManager.InsertUser("tytyt", "12234123");
+		userManager.InsertUser("qwerty", "12234123");
+		userManager.InsertUser("asdfgh", "12234123");
+		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
+		
+		User User1 = userManager.GetUser("TestAuthor");
+		User User2 = userManager.GetUser(49);
+		User User3 = userManager.GetUser("eee");
+		User User4 = userManager.GetUser(53);
+		
+		testManager.InsertTest(User1, true);
+		testManager.InsertTest(User1, false);
+		testManager.InsertTest(User2, true);
+		testManager.InsertTest(User2, true);
+		testManager.InsertTest(User2, false);		
+		testManager.InsertTest(User3, false);
+		testManager.InsertTest(User3, false);
+		testManager.InsertTest(User3, false);
+		testManager.InsertTest(User4, true);
+		testManager.InsertTest(User4, true);
+		
+		Test Test1 = testManager.GetTest(1);
+		Test Test2 = testManager.GetTest(3);
+		Test Test3 = testManager.GetTest(6);
+		Test Test4 = testManager.GetTest(9);
+		
+		resultManager.InsertResult(50,100);
+		resultManager.InsertResult(0,0);
+		resultManager.InsertResult(15,33.33f);
+		resultManager.InsertResult(16,42.1f);
+		resultManager.InsertResult(200,35.01f);
+		resultManager.InsertResult(45,44);
+		resultManager.InsertResult(63,34.4f);
+		resultManager.InsertResult(12,8.5f);
+		resultManager.InsertResult(65,76);
+		resultManager.InsertResult(34,29.9f);
+		
+		Result Result1 = resultManager.GetResult(1);
+		Result Result2 = resultManager.GetResult(3);
+		Result Result3 = resultManager.GetResult(6);
+		Result Result4 = resultManager.GetResult(9);
+		
+		completedtestManager.InsertCompletedTest(User1, Test4, Result3);
+		completedtestManager.InsertCompletedTest(User2, Test3, Result2);
+		completedtestManager.InsertCompletedTest(User3, Test2, Result4);
+		completedtestManager.InsertCompletedTest(User4, Test1, Result1);
+		completedtestManager.InsertCompletedTest(User1, Test4, Result3);
+		completedtestManager.InsertCompletedTest(User2, Test3, Result2);
+		
+		completedtestManager.DeleteCompletedTest(5);
+		System.out.println("wszystkie");
+		completedtestManager.ListCompletedTest();
+		System.out.println("Test3 id");
+		completedtestManager.ListTestCompletedTest(Test3.getTestID());
+		System.out.println("User2 id");
+		completedtestManager.ListUserCompletedTest(User2.getUserID());
+		System.out.println("User3 name");
+		completedtestManager.ListUserCompletedTest(User3.getName());
 		
 //		answerManager.InsertAnswer("odp1");
 //		answerManager.InsertAnswer("odp2");
@@ -39,9 +106,9 @@ public class ConnectionTest {
 //		answerManager.InsertAnswer("odp4");
 //		answerManager.InsertAnswer("odp5");
 		
-		answerManager.UpdateAnswer(3, "odp3");
-		answerManager.DeleteAnswer(5);
-		answerManager.ListAnswers();
+//		answerManager.UpdateAnswer(3, "odp3");
+//		answerManager.DeleteAnswer(5);
+//		answerManager.ListAnswers();
 		
 //		descriptionManager.InsertDescription("q","a");
 //		descriptionManager.InsertDescription("w","s");
@@ -57,27 +124,6 @@ public class ConnectionTest {
 //		descriptionManager.UpdateDescription(5, "Topic", "opis");
 //		descriptionManager.DeleteDescription(9);
 //		descriptionManager.ListDescription();
-		
-//		User User1 = userManager.GetUser("TestAuthor");
-//		User User2 = userManager.GetUser(49);
-//		User User3 = userManager.GetUser("eee");
-//		User User4 = userManager.GetUser(53);
-		
-//		testManager.InsertTest(User1, true);
-//		testManager.InsertTest(User1, false);
-//		testManager.InsertTest(User2, true);
-//		testManager.InsertTest(User2, true);
-//		testManager.InsertTest(User2, false);		
-//		testManager.InsertTest(User3, false);
-//		testManager.InsertTest(User3, false);
-//		testManager.InsertTest(User3, false);
-//		testManager.InsertTest(User4, true);
-//		testManager.InsertTest(User4, true);
-		
-//		Test Test1 = testManager.GetTest(1);
-//		Test Test2 = testManager.GetTest(3);
-//		Test Test3 = testManager.GetTest(6);
-//		Test Test4 = testManager.GetTest(9);
 		
 //		opinionManager.InsertOpinion(User1, Test4, "q" , 0);
 //		opinionManager.InsertOpinion(User2, Test3, "qw", 10);
@@ -101,18 +147,6 @@ public class ConnectionTest {
 //		System.out.println("opinie UserName = eee");
 //		opinionManager.ListUserOpinions("eee");
 		
-		
-//		userManager.InsertUser("pierwszy", "12234123");
-//		userManager.InsertUser("John", "12234123");
-//		userManager.InsertUser("asdf", "12234123");
-//		userManager.InsertUser("eee", "12234123");
-//		userManager.InsertUser("tyty", "12234123");
-//		userManager.InsertUser("tytyt", "12234123");
-//		userManager.InsertUser("qwerty", "12234123");
-//		userManager.InsertUser("asdfgh", "12234123");
-//		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
-		
-		
 //		List<Answer> answers = new ArrayList<Answer>();
 	
 //		questionManager.InsertQuestion(1,User1, "???", answers, 2);
@@ -130,23 +164,12 @@ public class ConnectionTest {
 //		questionManager.ListQuestions();
 //		questionManager.ListUserQuestions("TestAuthor");
 			
-//		resultManager.InsertResult(50,100);
-//		resultManager.InsertResult(0,0);
-//		resultManager.InsertResult(15,33.33f);
-//		resultManager.InsertResult(16,42.1f);
-//		resultManager.InsertResult(200,35.01f);
-//		resultManager.InsertResult(45,44);
-//		resultManager.InsertResult(63,34.4f);
-//		resultManager.InsertResult(12,8.5f);
-//		resultManager.InsertResult(65,76);
-//		resultManager.InsertResult(34,29.9f);
 		
 //		resultManager.UpdateResult(5, 666, 66.66f);
 //		resultManager.DeleteResult(9);
 //		resultManager.ListResult();
 				
-//		userManager.ListUser();
-			
+//		userManager.ListUser();	
 		
 //		testManager.ListTest();
 		

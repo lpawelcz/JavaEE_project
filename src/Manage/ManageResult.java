@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 
 
 import database.entities.Result;
+import database.entities.Test;
 
 public class ManageResult extends Manage {
 	//----INSERTING DATA---------------------------------//
@@ -111,6 +112,29 @@ public class ManageResult extends Manage {
 
 			System.out.println("done Listing");
 			return allResults;
+		}
+		
+		public Result GetResult(int resultID) {
+			Result tempResult = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempResult = (Result) session.createQuery("from Result s where s.resultID=" + Integer.toString(resultID)).uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempResult;
 		}
 	//----READING DATA-----------------------------------//	
 
