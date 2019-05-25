@@ -168,6 +168,33 @@ public class ManageTest extends Manage {
 			System.out.println("done Read");
 			return allTests;
 		}
+		
+		public List<Test> ListTopicTests(String topic) {
+			List<Test> allTests = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				allTests = session.createQuery("FROM Test t where t.description.topic ='"+topic+"'").getResultList();
+
+				for (Test tempTest : allTests) {
+					System.out.println(String.format("TestID: %s authorID: %d author_name: %s topic: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName(), tempTest.getDescription().getTopic()));
+				}
+				
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return allTests;
+		}
 	//----READING DATA-----------------------------------//	
 
 }
