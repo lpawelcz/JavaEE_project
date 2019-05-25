@@ -71,7 +71,7 @@ public class ManageUser extends Manage
 
 			try {
 				transaction = session.beginTransaction();
-				session.createQuery("delete from User s where s.UserID="+Integer.toString(UserID)).executeUpdate();
+				session.createQuery("delete from User s where s.userID="+Integer.toString(UserID)).executeUpdate();
 				transaction.commit();
 			} catch (Exception e) {
 				if (transaction != null) {

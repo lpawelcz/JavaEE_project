@@ -15,7 +15,7 @@ public class ConnectionTest {
 		
 		ManageUser userManager = new ManageUser();
 		
-		userManager.InsertUser("eloszka1", "12234123");
+		userManager.InsertUser("eloszka3", "12234123");
 		userManager.ListUser();
 		userManager.DeleteUser(8);	// asdf asdf
 		userManager.UpdateUser(1, "dupa");
