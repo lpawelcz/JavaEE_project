@@ -1,5 +1,8 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,7 +10,9 @@ import org.hibernate.cfg.Configuration;
 import Manage.ManageUser;
 import Manage.ManageTest;
 import Manage.ManageResult;
+import Manage.ManageQuestion;
 import database.entities.User;
+import database.entities.Answer;
 
 
 
@@ -16,8 +21,43 @@ public class ConnectionTest {
 	public static void main(String[] args) {
 		
 		ManageUser userManager = new ManageUser();
-		ManageTest testManager = new ManageTest();
-		ManageResult resultManager = new ManageResult();
+//		ManageTest testManager = new ManageTest();
+//		ManageResult resultManager = new ManageResult();
+		ManageQuestion questionManager = new ManageQuestion();
+		
+		userManager.InsertUser("pierwszy", "12234123");
+		userManager.InsertUser("John", "12234123");
+		userManager.InsertUser("asdf", "12234123");
+		userManager.InsertUser("eee", "12234123");
+		userManager.InsertUser("tyty", "12234123");
+		userManager.InsertUser("tytyt", "12234123");
+		userManager.InsertUser("qwerty", "12234123");
+		userManager.InsertUser("asdfgh", "12234123");
+		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
+		
+		User TestAuthor1 = userManager.GetUser("TestAuthor");
+		User TestAuthor2 = userManager.GetUser(49);
+		User TestAuthor3 = userManager.GetUser("eee");
+		User TestAuthor4 = userManager.GetUser(53);
+		
+		List<Answer> answers = new ArrayList<Answer>();
+		
+		questionManager.InsertQuestion(1,TestAuthor1, "???", answers, 2);
+		questionManager.InsertQuestion(1,TestAuthor2, "???", answers, 2);
+		questionManager.InsertQuestion(2,TestAuthor3, "???", answers, 2);
+		questionManager.InsertQuestion(1,TestAuthor4, "???", answers, 2);
+		questionManager.InsertQuestion(2,TestAuthor1, "???", answers, 2);
+		questionManager.InsertQuestion(2,TestAuthor2, "???", answers, 2);
+		questionManager.InsertQuestion(1,TestAuthor3, "???", answers, 2);
+		questionManager.InsertQuestion(1,TestAuthor4, "???", answers, 2);
+		questionManager.InsertQuestion(2,TestAuthor1, "???", answers, 2);
+		
+		questionManager.UpdateQuestion(4, "!!!", null, -1);
+		questionManager.DeleteQuestion(7);
+		questionManager.ListQuestions();
+		questionManager.ListUserQuestions("TestAuthor");
+		
+		
 		
 //		resultManager.InsertResult(50,100);
 //		resultManager.InsertResult(0,0);
@@ -32,24 +72,11 @@ public class ConnectionTest {
 		
 //		resultManager.UpdateResult(5, 666, 66.66f);
 //		resultManager.DeleteResult(9);
-		resultManager.ListResult();
+//		resultManager.ListResult();
 		
-//		userManager.InsertUser("pierwszy", "12234123");
-//		userManager.InsertUser("John", "12234123");
-//		userManager.InsertUser("asdf", "12234123");
-//		userManager.InsertUser("eee", "12234123");
-//		userManager.InsertUser("tyty", "12234123");
-//		userManager.InsertUser("tytyt", "12234123");
-//		userManager.InsertUser("qwerty", "12234123");
-//		userManager.InsertUser("asdfgh", "12234123");
-//		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
 		
 //		userManager.ListUser();
 		
-//		User TestAuthor1 = userManager.GetUser("TestAuthor");
-//		User TestAuthor2 = userManager.GetUser(47);
-//		User TestAuthor3 = userManager.GetUser("eee");
-//		User TestAuthor4 = userManager.GetUser(50);
 		
 //		testManager.InsertTest(TestAuthor1, true);
 //		testManager.InsertTest(TestAuthor1, false);
