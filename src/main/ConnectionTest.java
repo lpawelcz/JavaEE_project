@@ -13,6 +13,7 @@ import Manage.ManageResult;
 import Manage.ManageQuestion;
 import Manage.ManageOpinion;
 import Manage.ManageDescription;
+import Manage.ManageAnswer;
 
 import database.entities.User;
 import database.entities.Test;
@@ -28,9 +29,19 @@ public class ConnectionTest {
 //		ManageTest testManager = new ManageTest();
 //		ManageResult resultManager = new ManageResult();
 //		ManageQuestion questionManager = new ManageQuestion();
-//		ManageOpinion opinionManager = new ManageOpinion();
+//		ManageOpinion opinionManager = new ManageOpinion();		
+//		ManageDescription descriptionManager = new ManageDescription();
+		ManageAnswer answerManager = new ManageAnswer();
 		
-		ManageDescription descriptionManager = new ManageDescription();
+//		answerManager.InsertAnswer("odp1");
+//		answerManager.InsertAnswer("odp2");
+//		answerManager.InsertAnswer("odp9");
+//		answerManager.InsertAnswer("odp4");
+//		answerManager.InsertAnswer("odp5");
+		
+		answerManager.UpdateAnswer(3, "odp3");
+		answerManager.DeleteAnswer(5);
+		answerManager.ListAnswers();
 		
 //		descriptionManager.InsertDescription("q","a");
 //		descriptionManager.InsertDescription("w","s");
@@ -45,13 +56,12 @@ public class ConnectionTest {
 		
 //		descriptionManager.UpdateDescription(5, "Topic", "opis");
 //		descriptionManager.DeleteDescription(9);
-		descriptionManager.ListDescription();
+//		descriptionManager.ListDescription();
 		
 //		User User1 = userManager.GetUser("TestAuthor");
 //		User User2 = userManager.GetUser(49);
 //		User User3 = userManager.GetUser("eee");
 //		User User4 = userManager.GetUser(53);
-		
 		
 //		testManager.InsertTest(User1, true);
 //		testManager.InsertTest(User1, false);

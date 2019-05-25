@@ -18,12 +18,18 @@ public class Answer {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "asnwerID")
-	private int asnwerID;
+	@Column(name = "answerID")
+	private int answerID;
 	
 	@Column(name = "answer")
 	private String answer;
 	
+	public int getAnswerID() {
+		return answerID;
+	}
+	public void setAnswerID(int answerID) {
+		this.answerID = answerID;
+	}
 	public String getAnswer() {
 		return answer;
 	}
@@ -32,6 +38,6 @@ public class Answer {
 	}
 	@Override
 	public String toString() {
-		return "Answer [asnwerID=" + asnwerID + ", answer=" + answer + "]";
+		return "Answer [asnwerID=" + answerID + ", answer=" + answer + "]";
 	}
 }
