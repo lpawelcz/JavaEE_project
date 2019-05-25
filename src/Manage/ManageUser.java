@@ -2,10 +2,8 @@ package Manage;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+
 
 import database.entities.User;
 
@@ -37,14 +35,14 @@ public class ManageUser extends Manage
 //----INSERTING DATA---------------------------------//	
 	
 //----UPDATE DATA------------------------------------//
-		public int UpdateUser(int UserID, String name) {
+		public int UpdateUser(int userID, String name) {
 
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				User tempUser = session.get(User.class, UserID);
+				User tempUser = session.get(User.class, userID);
 				tempUser.setName(name);
 // update smth on object
 				transaction.commit();
@@ -57,21 +55,21 @@ public class ManageUser extends Manage
 				session.close();
 			}
 
-			System.out.println("done Inserting");
+			System.out.println("done Updating");
 			return 0;
 	}
 //----UPDATE DATA------------------------------------//	
 		
 		
 //----DELETE DATA------------------------------------//
-		public int DeleteUser(int UserID) {
+		public int DeleteUser(int userID) {
 
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				session.createQuery("delete from User s where s.userID="+Integer.toString(UserID)).executeUpdate();
+				session.createQuery("delete from User s where s.userID="+Integer.toString(userID)).executeUpdate();
 				transaction.commit();
 			} catch (Exception e) {
 				if (transaction != null) {
@@ -113,6 +111,53 @@ public class ManageUser extends Manage
 
 		System.out.println("done Listing");
 		return allUsers;
+	}
+	
+	
+	public User GetUser(int userID) {
+		User tempUser = null;
+		session = factory.getCurrentSession();
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			tempUser = (User) session.createQuery("from User s where s.userID ="+Integer.toString(userID)).getSingleResult();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				throw e;
+			}
+		} finally {
+			session.close();
+		}
+
+		System.out.println("done Read");
+		return tempUser;
+	}
+	
+	public User GetUser(String name) {
+		User tempUser = null;
+		session = factory.getCurrentSession();
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			tempUser = (User) session.createQuery("from User s where s.name='"+name+"'").uniqueResult();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				throw e;
+			}
+		} finally {
+			session.close();
+		}
+
+		System.out.println("done Read");
+		return tempUser;
 	}
 //----READING DATA-----------------------------------//	
 

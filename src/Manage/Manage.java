@@ -8,7 +8,7 @@ import database.entities.User;
 
 public class Manage 
 {
-	public static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class).buildSessionFactory();
+	public static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 	
 	public Session session;
 	

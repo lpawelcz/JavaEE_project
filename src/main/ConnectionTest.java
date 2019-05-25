@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import Manage.ManageUser;
+import Manage.ManageTest;
 import database.entities.User;
 
 
@@ -14,12 +15,45 @@ public class ConnectionTest {
 	public static void main(String[] args) {
 		
 		ManageUser userManager = new ManageUser();
+//		userManager.InsertUser("pierwszy", "12234123");
+//		userManager.InsertUser("John", "12234123");
+//		userManager.InsertUser("asdf", "12234123");
+//		userManager.InsertUser("eee", "12234123");
+//		userManager.InsertUser("tyty", "12234123");
+//		userManager.InsertUser("tytyt", "12234123");
+//		userManager.InsertUser("qwerty", "12234123");
+//		userManager.InsertUser("asdfgh", "12234123");
+//		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
+		userManager.ListUser();
+		User TestAuthor1 = userManager.GetUser("TestAuthor");
+		User TestAuthor2 = userManager.GetUser(47);
+		User TestAuthor3 = userManager.GetUser("eee");
+		User TestAuthor4 = userManager.GetUser(50);
 		
-		userManager.InsertUser("eloszka3", "12234123");
-		userManager.ListUser();
-		userManager.DeleteUser(8);	// asdf asdf
-		userManager.UpdateUser(1, "dupa");
-		userManager.ListUser();
+		ManageTest testManager = new ManageTest();
+		
+//		testManager.InsertTest(TestAuthor1, true);
+//		testManager.InsertTest(TestAuthor1, false);
+//		testManager.InsertTest(TestAuthor2, true);
+//		testManager.InsertTest(TestAuthor2, true);
+//		testManager.InsertTest(TestAuthor2, false);		
+//		testManager.InsertTest(TestAuthor3, false);
+//		testManager.InsertTest(TestAuthor3, false);
+//		testManager.InsertTest(TestAuthor3, false);
+//		testManager.InsertTest(TestAuthor4, true);
+//		testManager.InsertTest(TestAuthor4, true);
+		
+		testManager.ListTest();
+		
+		
+		
+		
+		
+//		userManager.InsertUser("eee", "12234123");
+//		userManager.ListUser();
+//		userManager.DeleteUser(8);	// asdf asdf
+//		userManager.UpdateUser(1, "dupa");
+//		userManager.ListUser();
 		
 
 		

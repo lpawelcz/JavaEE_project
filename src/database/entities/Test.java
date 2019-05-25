@@ -27,6 +27,10 @@ public class Test {
 		this.description = description;
 		this.isPublic = isPublic;
 	}
+	public Test(User author, boolean isPublic) {
+		this.author = author;
+		this.isPublic = isPublic;
+	}
 	public Test() {}
 
 	@Id
