@@ -24,11 +24,11 @@ public class ConnectionTest {
 //		userManager.InsertUser("qwerty", "12234123");
 //		userManager.InsertUser("asdfgh", "12234123");
 //		userManager.InsertUser("TestAuthor", "TestAuthor_pass");
-		userManager.ListUser();
-		User TestAuthor1 = userManager.GetUser("TestAuthor");
-		User TestAuthor2 = userManager.GetUser(47);
-		User TestAuthor3 = userManager.GetUser("eee");
-		User TestAuthor4 = userManager.GetUser(50);
+//		userManager.ListUser();
+//		User TestAuthor1 = userManager.GetUser("TestAuthor");
+//		User TestAuthor2 = userManager.GetUser(47);
+//		User TestAuthor3 = userManager.GetUser("eee");
+//		User TestAuthor4 = userManager.GetUser(50);
 		
 		ManageTest testManager = new ManageTest();
 		
@@ -44,6 +44,12 @@ public class ConnectionTest {
 //		testManager.InsertTest(TestAuthor4, true);
 		
 		testManager.ListTest();
+		
+		System.out.println("testy TestAuthora, po ID");
+		testManager.ListUserTests(55);
+		
+		System.out.println("testy eee, po loginie");
+		testManager.ListUserTests("eee");
 		
 		
 		

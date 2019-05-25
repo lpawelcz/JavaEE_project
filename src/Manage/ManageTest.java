@@ -97,7 +97,7 @@ public class ManageTest extends Manage {
 				allTests = session.createQuery("from Test").getResultList();
 
 				for (Test tempTest : allTests) {
-					System.out.println(String.format("TestID: %s authorID: %d author_name: %s\n", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
 				}
 				
 				transaction.commit();
@@ -111,6 +111,61 @@ public class ManageTest extends Manage {
 			}
 
 			System.out.println("done Listing");
+			return allTests;
+		}
+		
+		
+		public List<Test> ListUserTests(int userID) {
+			List<Test> allTests = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				allTests = session.createQuery("from Test s where s.author.userID ="+Integer.toString(userID)).getResultList();
+
+				for (Test tempTest : allTests) {
+					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+				}
+				
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return allTests;
+		}
+		
+		public List<Test> ListUserTests(String name) {
+			List<Test> allTests = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				allTests = session.createQuery("FROM Test t where t.author.name ='"+name+"'").getResultList();
+
+				for (Test tempTest : allTests) {
+					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+				}
+				
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
 			return allTests;
 		}
 	//----READING DATA-----------------------------------//	
