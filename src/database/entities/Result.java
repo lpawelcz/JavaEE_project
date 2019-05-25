@@ -5,14 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Result")
 public class Result {
 
-	public Result(float result, float prcntgOfUnderstanding) {
-		this.result = result;
+	public Result(float points, float prcntgOfUnderstanding) {
+		this.points = points;
 		this.prcntgOfUnderstanding = prcntgOfUnderstanding;
 	}
 	public Result() {}
@@ -22,10 +23,10 @@ public class Result {
 	@Column(name = "resultID")
 	private int resultID;
 	
-	@Column(name = "result")
-	private float result;
+	@JoinColumn(name = "points")
+	private float points;
 	
-	@Column(name = "prcntgOfUnderstanding")
+	@JoinColumn(name = "prcntgOfUnderstanding")
 	private float prcntgOfUnderstanding;
 	
 	public int getResultID() {
@@ -34,11 +35,11 @@ public class Result {
 	public void setResultID(int resultID) {
 		this.resultID = resultID;
 	}
-	public float getResult() {
-		return result;
+	public float getPoints() {
+		return points;
 	}
-	public void setResult(float result) {
-		this.result = result;
+	public void setPoints(float points) {
+		this.points = points;
 	}
 	public float getPrcntgOfUnderstanding() {
 		return prcntgOfUnderstanding;
@@ -49,7 +50,7 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "Result [resultID=" + resultID + ", result=" + result + ", prcntgOfUnderstanding="
+		return "Result [resultID=" + resultID + ", points=" + points + ", prcntgOfUnderstanding="
 				+ prcntgOfUnderstanding + "]";
 	}
 
