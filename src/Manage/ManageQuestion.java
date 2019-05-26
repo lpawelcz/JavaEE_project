@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import database.entities.Answer;
 import database.entities.User;
 import database.entities.Question;
+import database.entities.Test;
 
 public class ManageQuestion extends Manage {
 	//----INSERTING DATA---------------------------------//
@@ -171,6 +172,29 @@ public class ManageQuestion extends Manage {
 
 			System.out.println("done Read");
 			return allQuestions;
+		}
+		
+		public Question GetQuestion(int questionID) {
+			Question tempQuestion = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempQuestion = (Question) session.createQuery("from Question s where s.questionID=" + Integer.toString(questionID)).uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempQuestion;
 		}
 	//----READING DATA-----------------------------------//	
 

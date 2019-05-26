@@ -26,6 +26,7 @@
  		
  		<mapping class="database.entities.Answer"/>
  		<mapping class="database.entities.CompletedTest"/>
+ 		<mapping class="database.entities.QuestionInTest"/>
  		<mapping class="database.entities.Description"/>
  		<mapping class="database.entities.Opinion"/>
  		<mapping class="database.entities.Question"/>
