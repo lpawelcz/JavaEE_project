@@ -123,8 +123,8 @@ public class ManageQuestionInTest extends Manage {
 				transaction = session.beginTransaction();
 				allQuestionsInTests = session.createQuery("from QuestionInTest s where s.test.testID ="+Integer.toString(testID)).getResultList();
 
-				for (QuestionInTest tempCompletedTest : allQuestionsInTests) {
-					System.out.println(tempCompletedTest);
+				for (QuestionInTest tempQuestionInTest : allQuestionsInTests) {
+					System.out.println(tempQuestionInTest);
 				}
 				
 				transaction.commit();

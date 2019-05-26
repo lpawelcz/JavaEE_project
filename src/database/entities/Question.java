@@ -39,8 +39,7 @@ public class Question {
 	@Column(name = "question")
 	private String question;
 	
-	@OneToMany
-	@JoinColumn(name = "answerID")
+	@OneToMany(mappedBy = "answerID")
 	private List<Answer> answers = new ArrayList<Answer>();
 	
 	private int correctID;
@@ -83,8 +82,8 @@ public class Question {
 	}
 	@Override
 	public String toString() {
-		return "Question [questionID=" + questionID + ", author=" + author + ", question=" + question + ", answers="
-				+ answers + ", correctID=" + correctID + "]";
+		return "Question [questionID=" + questionID + ", author=" + author.getName() + ", question=" + question + ", answers="
+				+ answers + ", correctID=" + correctID+ ", DTYPE=" + DTYPE + "]";
 	}
 	
 }

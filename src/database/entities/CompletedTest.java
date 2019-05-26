@@ -67,7 +67,7 @@ public class CompletedTest {
 	}
 	@Override
 	public String toString() {
-		return "CompletedTest [completedtestID=" + completedtestID + ", user=" + user + ", test=" + test + ", result="
+		return "CompletedTest [completedtestID=" + completedtestID + ", user=" + user.getName() + ", test=" + test.getTestID() + ", result="
 				+ result + "]";
 	}
 	

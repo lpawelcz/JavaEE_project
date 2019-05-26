@@ -5,6 +5,7 @@ package Manage;
 	import org.hibernate.Transaction;
 
 import database.entities.Description;
+import database.entities.Test;
 
 	public class ManageDescription extends Manage {
 		//----INSERTING DATA---------------------------------//
@@ -112,6 +113,29 @@ import database.entities.Description;
 
 				System.out.println("done Listing");
 				return allDescriptions;
+			}
+			
+			public Description GetDescription(int descID) {
+				Description tempDescription = null;
+				session = factory.getCurrentSession();
+				Transaction transaction = null;
+
+				try {
+					transaction = session.beginTransaction();
+					tempDescription = (Description) session.createQuery("from Description s where s.descID=" + Integer.toString(descID)).uniqueResult();
+
+					transaction.commit();
+				} catch (Exception e) {
+					if (transaction != null) {
+						transaction.rollback();
+						throw e;
+					}
+				} finally {
+					session.close();
+				}
+
+				System.out.println("done Read");
+				return tempDescription;
 			}
 		//----READING DATA-----------------------------------//	
 

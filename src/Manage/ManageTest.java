@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.hibernate.Transaction;
 
-
+import database.entities.Description;
 import database.entities.Test;
 import database.entities.User;
 
 public class ManageTest extends Manage {
 	//----INSERTING DATA---------------------------------//
-		public int InsertTest(User author, boolean isPublic) {
+		public int InsertTest(User author, Description description, boolean isPublic) {
 
-			Test tempTest = new Test(author, isPublic);
+			Test tempTest = new Test(author,description, isPublic);
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
@@ -96,7 +96,8 @@ public class ManageTest extends Manage {
 				allTests = session.createQuery("from Test").getResultList();
 
 				for (Test tempTest : allTests) {
-					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+//					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+					System.out.println(tempTest);
 				}
 				
 				transaction.commit();
@@ -124,7 +125,7 @@ public class ManageTest extends Manage {
 				allTests = session.createQuery("from Test s where s.author.userID ="+Integer.toString(userID)).getResultList();
 
 				for (Test tempTest : allTests) {
-					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+					System.out.println(tempTest);
 				}
 				
 				transaction.commit();
@@ -151,7 +152,7 @@ public class ManageTest extends Manage {
 				allTests = session.createQuery("FROM Test t where t.author.name ='"+name+"'").getResultList();
 
 				for (Test tempTest : allTests) {
-					System.out.println(String.format("TestID: %s authorID: %d author_name: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName()));
+					System.out.println(tempTest);
 				}
 				
 				transaction.commit();
@@ -178,7 +179,7 @@ public class ManageTest extends Manage {
 				allTests = session.createQuery("FROM Test t where t.description.topic ='"+topic+"'").getResultList();
 
 				for (Test tempTest : allTests) {
-					System.out.println(String.format("TestID: %s authorID: %d author_name: %s topic: %s", tempTest.getTestID(), tempTest.getAuthor().getUserID(), tempTest.getAuthor().getName(), tempTest.getDescription().getTopic()));
+					System.out.println(tempTest);
 				}
 				
 				transaction.commit();

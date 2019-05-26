@@ -52,8 +52,7 @@ public class QuestionInTest {
 	}
 	@Override
 	public String toString() {
-		return "QuestionInTest [questionintestID=" + questionintestID + ", testID=" + test.getTestID() + ", question="
-				+ question.getQuestion() + ", questionID=" + question.getQuestionID() + "]";
+		return "QuestionInTest [questionintestID=" + questionintestID + ", testID=" + test.getTestID() + ", questionID="+ question.getQuestionID() + "]";
 	}
 	
 	

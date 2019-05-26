@@ -70,7 +70,7 @@ public class ManageCompletedTest extends Manage {
 				allCompletedTests = session.createQuery("from CompletedTest").getResultList();
 
 				for (CompletedTest tempCompletedTest : allCompletedTests) {
-					System.out.println(String.format("TestID: %s user_name: %s "+tempCompletedTest.getResult(), tempCompletedTest.getTest().getTestID(), tempCompletedTest.getUser().getName()));
+					System.out.println(tempCompletedTest);
 				}
 				
 				transaction.commit();
@@ -98,7 +98,7 @@ public class ManageCompletedTest extends Manage {
 				allCompletedTest = session.createQuery("from CompletedTest s where s.user.userID ="+Integer.toString(userID)).getResultList();
 
 				for (CompletedTest tempCompletedTest : allCompletedTest) {
-					System.out.println(String.format("TestID: %s user_name: %s "+tempCompletedTest.getResult(), tempCompletedTest.getTest().getTestID(), tempCompletedTest.getUser().getName()));
+					System.out.println(tempCompletedTest);
 				}
 				
 				transaction.commit();
@@ -125,7 +125,7 @@ public class ManageCompletedTest extends Manage {
 				allCompletedTest = session.createQuery("FROM CompletedTest t where t.user.name ='"+name+"'").getResultList();
 
 				for (CompletedTest tempCompletedTest : allCompletedTest) {
-					System.out.println(String.format("TestID: %s user_name: %s "+tempCompletedTest.getResult(), tempCompletedTest.getTest().getTestID(), tempCompletedTest.getUser().getName()));
+					System.out.println(tempCompletedTest);
 				}
 				
 				transaction.commit();
@@ -152,7 +152,7 @@ public class ManageCompletedTest extends Manage {
 				allCompletedTest = session.createQuery("from CompletedTest s where s.test.testID ="+Integer.toString(testID)).getResultList();
 
 				for (CompletedTest tempCompletedTest : allCompletedTest) {
-					System.out.println(String.format("TestID: %s user_name: %s "+tempCompletedTest.getResult(), tempCompletedTest.getTest().getTestID(), tempCompletedTest.getUser().getName()));
+					System.out.println(tempCompletedTest);
 				}
 				
 				transaction.commit();

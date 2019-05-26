@@ -7,7 +7,6 @@ import org.hibernate.Transaction;
 import database.entities.Answer;
 import database.entities.User;
 import database.entities.Question;
-import database.entities.Test;
 
 public class ManageQuestion extends Manage {
 	//----INSERTING DATA---------------------------------//

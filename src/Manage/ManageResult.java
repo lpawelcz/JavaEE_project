@@ -97,7 +97,7 @@ public class ManageResult extends Manage {
 				allResults = session.createQuery("from Result").getResultList();
 
 				for (Result tempResult : allResults) {
-					System.out.println(String.format("ResultID: %s points: %f prcntgOfUnderstanding: %f", tempResult.getResultID(), tempResult.getPoints(), tempResult.getPrcntgOfUnderstanding()));
+					System.out.println(tempResult);
 				}
 				
 				transaction.commit();

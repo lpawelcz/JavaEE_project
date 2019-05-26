@@ -96,7 +96,7 @@ public class ManageUser extends Manage
 			allUsers = session.createQuery("from User").getResultList();
 
 			for (User tempUser : allUsers) {
-				System.out.println(tempUser.getName());
+				System.out.println(tempUser);
 			}
 			
 			transaction.commit();

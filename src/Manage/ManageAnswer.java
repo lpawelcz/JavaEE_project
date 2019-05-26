@@ -4,6 +4,7 @@ import java.util.List;
 import org.hibernate.Transaction;
 
 import database.entities.Answer;
+import database.entities.Test;
 
 public class ManageAnswer extends Manage {
 	//----INSERTING DATA---------------------------------//
@@ -109,6 +110,29 @@ public class ManageAnswer extends Manage {
 
 			System.out.println("done Listing");
 			return allAnswers;
+		}
+		
+		public Answer GetAnswer(int asnwerID) {
+			Answer tempAnswer = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.answerID=" + Integer.toString(asnwerID)).uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempAnswer;
 		}
 	//----READING DATA-----------------------------------//	
 
