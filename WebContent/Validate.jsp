@@ -19,15 +19,6 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<div class="nav">
-		<ol>
-				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-		</ol>
-	</div>
-
 
 <div class="content">
 	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
@@ -45,20 +36,42 @@
 	<jsp:useBean id="dataSource"
 		class="main.DataSource" scope="session"></jsp:useBean>
 
-	<!-- Wyświetlenie nazwy użytkownika. -->
-	Nazwa: <%= user.getName() %><br />
-	pass: <%= user.getPassword() %><br />
-
-	<!-- Logika sprawdzająca poprawność parametrów logowania. -->
-	<% String result = "Dane niepoprawne - BLAD";
-
-	if(dataSource.userInData(user)) {
-		result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
-		}
-	%>
-
-	<!-- Zwrócenie wynikowego stringa "result" -->
-	<%= result %>
+	<% if(session.getAttribute("session") == "TRUE")
+	{ %>
+		<div class="nav">
+			<ol>
+					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+			</ol>
+		</div>
+		<center>Jesteś zalogowany.</center>
+	<% } 
+	else { %>
+		<div class="nav">
+			<ol>
+					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+			</ol>
+		</div>
+		<!-- Wyświetlenie nazwy użytkownika. -->
+		Nazwa: <%= user.getName() %><br />
+		pass: <%= user.getPassword() %><br />
+	
+		<!-- Logika sprawdzająca poprawność parametrów logowania. -->
+		<% String result = "Dane niepoprawne - BLAD";
+	
+		if(dataSource.userInData(user)) {
+			result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
+			session.setAttribute("session","TRUE");  
+			}
+		%>
+	
+		<!-- Zwrócenie wynikowego stringa "result" -->
+		<%= result %>
+	<% } %>
 </div>
 </div>
 </body>

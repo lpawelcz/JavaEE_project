@@ -10,12 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Answer")
 public class Answer {
-	
-	public Answer(String answer) {
-		this.answer = answer;
-	}
-	public Answer() {}
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "answerID")
@@ -23,6 +17,15 @@ public class Answer {
 	
 	@Column(name = "answer")
 	private String answer;
+	
+	//@Column(name = "questionID")
+	//private int questionID;
+
+	public Answer(String answer) {
+		this.answer = answer;
+		//this.answerID = ID;
+	}
+	public Answer() {}
 	
 	public int getAnswerID() {
 		return answerID;

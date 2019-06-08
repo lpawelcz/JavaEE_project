@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
@@ -19,24 +19,41 @@
 		</div>
 	</div>
 	
-	<div class="nav">
-		<ol>
+	
+	
+	<% if(session.getAttribute("session") == "TRUE")
+	{ %>
+		<div class="nav">
+			<ol>
 				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
 				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-		</ol>
-	</div>
-
-	<div class="content">
-	  <form method="post" action="Validate.jsp">
-	        Podaj swoj login: <br />
-	        <input type="text" name="name" /><br /> 
-	        Podaj swoje haslo: <br />
-	        <input type="text" name="password" /><br /> 
-	        <input type="submit" value="zaloguj">
-	    </form>
-	</div>
+				<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+			</ol>
+		</div>
+		
+		<center>Jesteś już zalogowany.</center>
+	<% } 
+	else { %>
+		<div class="nav">
+			<ol>
+				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+			</ol>
+		</div>
 	
+		<div class="content">
+		  <form method="post" action="Validate.jsp">
+		        Podaj swoj login: <br />
+		        <input type="text" name="name" /><br /> 
+		        Podaj swoje haslo: <br />
+		        <input type="text" name="password" /><br /> 
+		        <input type="submit" value="zaloguj">
+		    </form>
+		</div>
+	<% } %>
+
 </div>
 </body>
 </html>

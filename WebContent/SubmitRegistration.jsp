@@ -18,13 +18,27 @@
 		</div>
 	</div>
 	
-	<div class="nav">
-		<ol>
+	<% if(session.getAttribute("session") == "TRUE")
+	{ %>
+		<div class="nav">
+			<ol>
 				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
 				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-		</ol>
-	</div>
+				<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+			</ol>
+		</div>
+	<% } 
+	else { %>
+		<div class="nav">
+			<ol>
+				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+			</ol>
+		</div>
+	<% } %>
+	
 <div class="content">
 <form method="post" action="Login.jsp">
 	<jsp:useBean id="user" class="database.entities.User"
