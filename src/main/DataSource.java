@@ -8,12 +8,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import database.entities.User;
+import database.entities.*;	//import wszystkich klas z bazy danych
 
 public class DataSource 
 {
+	//sekcja na dane 
 	private List<User> usersData;
 	private List<User> usersDataFromDB;
+	private List<Test> testsDataFromDB;
+	private List<Answer> answerDatatFromDB;
+	private List<CompletedTest> completedTestDatatFromDB;
+	private List<Description> descriptionDatatFromDB;
+	private List<Opinion> opinionDatatFromDB;
+	private List<Question> questionDatatFromDB;
+	private List<QuestionInTest> questionInTestDatatFromDB;
+	private List<Result> resultDatatFromDB;
+	
 	SessionFactory factory;
 	Session session;
 	
@@ -39,9 +49,6 @@ public class DataSource
 //		d.session.getTransaction().commit();
 //		System.out.println("done");
 //		
-		
-		
-		
 		
 		
 		
@@ -103,9 +110,87 @@ public class DataSource
 			System.out.println("pobrano userow");
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}		
+		}	
 		
+		testsDataFromDB = new ArrayList<Test>();
+		try {
+			session.beginTransaction();
+			testsDataFromDB = session.createCriteria(Test.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano testy z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
 		
+		answerDatatFromDB = new ArrayList<Answer>();
+		try {
+			session.beginTransaction();
+			answerDatatFromDB = session.createCriteria(Answer.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano odpowiedzi z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		completedTestDatatFromDB = new ArrayList<CompletedTest>();
+		try {
+			session.beginTransaction();
+			completedTestDatatFromDB = session.createCriteria(CompletedTest.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano ukoñczone testy z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		descriptionDatatFromDB = new ArrayList<Description>();
+		try {
+			session.beginTransaction();
+			descriptionDatatFromDB = session.createCriteria(Description.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano opisy z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		opinionDatatFromDB = new ArrayList<Opinion>();
+		try {
+			session.beginTransaction();
+			opinionDatatFromDB = session.createCriteria(Opinion.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano opinie z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		questionDatatFromDB = new ArrayList<Question>();
+		try {
+			session.beginTransaction();
+			questionDatatFromDB = session.createCriteria(Question.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano pytania z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		questionInTestDatatFromDB = new ArrayList<QuestionInTest>();
+		try {
+			session.beginTransaction();
+			questionInTestDatatFromDB = session.createCriteria(QuestionInTest.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano pytania w tescie z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		resultDatatFromDB = new ArrayList<Result>();
+		try {
+			session.beginTransaction();
+			resultDatatFromDB = session.createCriteria(Result.class).list();
+			session.getTransaction().commit();
+			System.out.println("Pobrano wyniki z bazy danych.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean userInData(User user)
@@ -151,7 +236,7 @@ public class DataSource
 	}
 	
 
-	private void generateTestData() 
+	public void generateTestData() 
 	{
 		System.out.println("Start create users");
 		usersData.add(new User("Pitok", "123"));
