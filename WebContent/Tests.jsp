@@ -46,7 +46,7 @@
 	
 		<center>Dostępne testy: </center>
 		<center>
-			<form method="post" action="SelectedTest.jsp">
+			<form method="post" action="SelectedTestSend" name="submitForm">
 				<table>
 					<tr>
 						<th>ID</th>
@@ -56,8 +56,9 @@
 					</tr>
 
 					<% for(int i = 0; i < dataSource.getTestsDataFromDB().size(); i+=1) { %>
-			            <tr class="href" onclick="toggle(this, <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> )">
-			                <td><a href="SelectedTest.jsp" test=dataSource.getTestsDataFromDB().get(i)> <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> </a></td>
+			            <tr>
+			            	<input type="hidden" name="test_ID" value=<%=dataSource.getTestsDataFromDB().get(i).getTestID() %>>
+			                <td><a href="javascript:document.submitForm.submit()"> <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> </a></td>
 			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getTopic() %></td>
 			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getDescription() %></td>
 			            </tr>

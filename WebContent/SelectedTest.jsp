@@ -31,6 +31,9 @@
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
 	<jsp:setProperty property="*" name="Test" />
+	
+	<jsp:useBean id="dataSource"
+		class="main.DataSource" scope="session"></jsp:useBean>
 
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
