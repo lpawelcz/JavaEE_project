@@ -8,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Lista testow</title>
 </head>
 <body>
 <div class="wrapper">
@@ -45,7 +45,7 @@
 			</ol>
 		</div>
 	
-		<center>Dostępne testy: </center>
+		<center>Dostepne testy: </center>
 		<center>
 				<table>
 					<tr>
