@@ -45,8 +45,8 @@ public class SelectedTestSend extends HttpServlet {
         String test_ID = request.getParameter("test_ID");
         String url = "/SelectedTest.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        String autor;
-        String opis;
+        String autor = "brak";
+        String opis = "brak";
         
         out.println("ID wybranego testu:");
         out.println(test_ID);

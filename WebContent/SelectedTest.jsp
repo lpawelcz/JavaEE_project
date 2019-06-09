@@ -30,10 +30,10 @@
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<!--<jsp:setProperty property="*" name="Test" /> -->
+	<jsp:setProperty property="*" name="Test" /> 
 	
 	<jsp:useBean id="dataSource"
-		class="main.DataSource" scope="session"></jsp:useBean>
+		class="main.DataSource" scope="session"></jsp:useBean> 
 
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
