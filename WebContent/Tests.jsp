@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +21,13 @@
 	</div>
 	
 	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="test" class="database.entities.Test"
+	<jsp:useBean id="Test" class="database.entities.Test"
 		scope="session"></jsp:useBean>
 		
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="test" />
+	<jsp:setProperty property="*" name="Test" />
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="dataSource"
@@ -46,25 +47,21 @@
 	
 		<center>Dostępne testy: </center>
 		<center>
-			<form method="post" action="SelectedTestSend" name="submitForm">
 				<table>
 					<tr>
 						<th>ID</th>
 						<th>Temat</th>
 						<th>Opis</th>
-						<th></th>
 					</tr>
-
-					<% for(int i = 0; i < dataSource.getTestsDataFromDB().size(); i+=1) { %>
-			            <tr>
-			            	<input type="hidden" name="test_ID" value=<%=dataSource.getTestsDataFromDB().get(i).getTestID() %>>
-			                <td><a href="javascript:document.submitForm.submit()"> <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> </a></td>
-			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getTopic() %></td>
-			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getDescription() %></td>
-			            </tr>
-			        <% } %>
+					
+					<c:forEach var="Test" items="${dataSource.testsDataFromDB}">
+						<tr>
+							<td>Test ID: ${Test.testID}</td>
+							<td>Topic: ${Test.description.topic}</td>
+							<td>Description: ${Test.description.description}</td>
+						</tr>					
+      				</c:forEach>      				
 				</table>
-			</form>
 		</center>
 	<% } 
 	else { %>
