@@ -30,13 +30,16 @@
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
+	<!--<jsp:setProperty property="*" name="Test" /> -->
 	
 	<jsp:useBean id="dataSource"
 		class="main.DataSource" scope="session"></jsp:useBean>
 
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
+	<% String test_ID = (String) request.getAttribute("test_ID"); %>
+	<% String autor = (String) request.getAttribute("autor"); %>
+	<% String opis = (String) request.getAttribute("opis"); %>
 		<div class="nav">
 			<ol>
 					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
@@ -56,10 +59,8 @@
 					</tr>
 
 			        <tr>
-			        	<td><%=test.getAuthor().getName() %></td>
-			        	<td><%=test.getDescription().getTopic() %></td>
-			        	<td><%=test.getDescription().getDescription() %></td>
-			        	<td><%=test.getQuestions().size() %></td>
+			        	<%=autor %>
+			        	<%=opis %>
 			        </tr>
 
 				</table>
