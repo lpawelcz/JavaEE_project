@@ -19,8 +19,6 @@
 		</div>
 	</div>
 	
-	
-	
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">

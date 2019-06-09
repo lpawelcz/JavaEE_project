@@ -7,8 +7,9 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Test</title>
 </head>
+
 <body>
 <div class="wrapper">
 
@@ -18,21 +19,19 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<!-- To jest tak jakby deklaracja zmiennej Test -->
+
+<div class="content">
+	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
+	javastart.jspexample.model w sesji użytkownika. Jeśli znajdzie, to go 
+	wykorzysta, jeśli nie stworzy nowy obiekt klasy user o nazwie "user"-->
 	<jsp:useBean id="test" class="database.entities.Test"
 		scope="session"></jsp:useBean>
-		
+
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="test" />
-	
-	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="dataSource"
-		class="main.DataSource" scope="session"></jsp:useBean>
-	
-	
+	<jsp:setProperty property="*" name="Test" />
+
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
@@ -43,28 +42,25 @@
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
 			</ol>
 		</div>
-	
-		<center>Dostępne testy: </center>
-		<center>
-			<form method="post" action="SelectedTest.jsp">
-				<table>
+		
+			<table>
 					<tr>
-						<th>ID</th>
+						<th>Twórca</th>
 						<th>Temat</th>
 						<th>Opis</th>
+						<th>Ilość pytań</th>
 						<th></th>
 					</tr>
 
-					<% for(int i = 0; i < dataSource.getTestsDataFromDB().size(); i+=1) { %>
-			            <tr class="href" onclick="toggle(this, <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> )">
-			                <td><a href="SelectedTest.jsp" test=dataSource.getTestsDataFromDB().get(i)> <%=dataSource.getTestsDataFromDB().get(i).getTestID() %> </a></td>
-			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getTopic() %></td>
-			                <td><%=dataSource.getTestsDataFromDB().get(i).getDescription().getDescription() %></td>
-			            </tr>
-			        <% } %>
+			        <tr>
+			        	<td><%=test.getAuthor().getName() %></td>
+			        	<td><%=test.getDescription().getTopic() %></td>
+			        	<td><%=test.getDescription().getDescription() %></td>
+			        	<td><%=test.getQuestions().size() %></td>
+			        </tr>
+
 				</table>
-			</form>
-		</center>
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -73,12 +69,9 @@
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
-		</div>
 		<center>Proszę się zalogować.</center>
 	<% } %>
-	
-	
 </div>
-
+</div>
 </body>
 </html>

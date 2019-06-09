@@ -49,27 +49,38 @@
 		<center>Jesteś zalogowany.</center>
 	<% } 
 	else { %>
-		<div class="nav">
-			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-			</ol>
-		</div>
+	<%
+		String result = "";
+		if(dataSource.userInData(user)) {
+			result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
+			session.setAttribute("session","TRUE");  
+		%>
+			<div class="nav">
+				<ol>
+						<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+				</ol>
+			</div>
+		<% }
+		else { %>
+			<div class="nav">
+				<ol>
+						<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+				</ol>
+			</div>
+			
+			<% result = "Dane niepoprawne - BLAD";%>
+		<% }%>
+		
 		<!-- Wyświetlenie nazwy użytkownika. -->
 		Nazwa: <%= user.getName() %><br />
 		pass: <%= user.getPassword() %><br />
 	
-		<!-- Logika sprawdzająca poprawność parametrów logowania. -->
-		<% String result = "Dane niepoprawne - BLAD";
-	
-		if(dataSource.userInData(user)) {
-			result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
-			session.setAttribute("session","TRUE");  
-			}
-		%>
-	
-		<!-- Zwrócenie wynikowego stringa "result" -->
+		
 		<%= result %>
 	<% } %>
 </div>
