@@ -30,8 +30,8 @@
 	<jsp:setProperty property="*" name="Test" />
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="dataSource"
-		class="main.DataSource" scope="session"></jsp:useBean>
+	<jsp:useBean id="ManageTest"
+		class="Manage.ManageTest" scope="session"></jsp:useBean>
 	
 	
 	<% if(session.getAttribute("session") == "TRUE")
@@ -54,7 +54,7 @@
 						<th>Opis</th>
 					</tr>
 					
-					<c:forEach var="Test" items="${dataSource.testsDataFromDB}">
+					<c:forEach var="Test" items="${ManageTest.ListTest()}">
 						<tr>
 							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
 <%-- 							<td>${Test.testID}</td> --%>
