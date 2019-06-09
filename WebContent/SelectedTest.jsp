@@ -24,7 +24,7 @@
 	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
 	javastart.jspexample.model w sesji użytkownika. Jeśli znajdzie, to go 
 	wykorzysta, jeśli nie stworzy nowy obiekt klasy user o nazwie "user"-->
-	<jsp:useBean id="test" class="database.entities.Test"
+	<jsp:useBean id="Test" class="database.entities.Test"
 		scope="session"></jsp:useBean>
 
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
@@ -42,24 +42,24 @@
 					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
 		
 			<table>
 					<tr>
-						<th>Twórca</th>
+						<th>Tworca</th>
 						<th>Temat</th>
 						<th>Opis</th>
-						<th>Ilość pytań</th>
+						<th>Ilosc pytan</th>
 						<th></th>
 					</tr>
 
 			        <tr>
-			        	<td><%=test.getAuthor().getName() %></td>
-			        	<td><%=test.getDescription().getTopic() %></td>
-			        	<td><%=test.getDescription().getDescription() %></td>
-			        	<td><%=test.getQuestions().size() %></td>
+			        	<td>${Test.author.name}</td>
+			        	<td>${Test.description.topic}</td>
+			        	<td>${Test.description.description}</td>
+
 			        </tr>
 
 				</table>

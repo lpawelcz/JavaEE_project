@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.entities.Test;	//import wszystkich klas z bazy danych
+import Manage.ManageTest;
+
 /**
  * Servlet implementation class SelectedTestSend
  */
 @WebServlet("/SelectedTestSend")
 public class SelectedTestSend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ManageTest manageTests = new ManageTest();  
+	public Test test;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,12 +38,19 @@ public class SelectedTestSend extends HttpServlet {
 		//request.setAttribute("test_id", 1);
 		//request.getRequestDispatcher("Bashownik/SelectedTest.jsp").forward(request, response);
 		
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 
         String test_ID = request.getParameter("test_ID");
+        test = manageTests.GetTest(Integer.parseInt(test_ID));
+        //out.println("ID wybranego testu:");
+        //out.println(test_ID);
+        
+        request.setAttribute("Test", test);
 
-        out.println("ID wybranego testu:");
-        out.println(test_ID);
+        // Forward to to the JSP file.
+        request.getRequestDispatcher("SelectedTest.jsp").forward(request, response);
+        
+        
 	}
 
 	/**
