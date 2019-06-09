@@ -41,7 +41,7 @@
 					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
 	
@@ -56,9 +56,10 @@
 					
 					<c:forEach var="Test" items="${dataSource.testsDataFromDB}">
 						<tr>
-							<td>Test ID: ${Test.testID}</td>
-							<td>Topic: ${Test.description.topic}</td>
-							<td>Description: ${Test.description.description}</td>
+							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
+<%-- 							<td>${Test.testID}</td> --%>
+							<td>${Test.description.topic}</td>
+							<td>${Test.description.description}</td>
 						</tr>					
       				</c:forEach>      				
 				</table>
