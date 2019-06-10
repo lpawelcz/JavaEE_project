@@ -2,6 +2,8 @@ package pl.javastart.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,14 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Manage.*;
-import database.entities.Test;
-import database.entities.User;
+import database.entities.*;
+
 
 @WebServlet("/SignUpForTest")
 public class SignUpForTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ManageTest manageTests = new ManageTest();
 	private ManageUser manageUser = new ManageUser();
+	private ManageQuestionInTest manageQuestionInTest = new ManageQuestionInTest();
 	public Test test;
 	public User user;
 
@@ -30,9 +33,11 @@ public class SignUpForTest extends HttpServlet {
 		
 		test = manageTests.GetTest(Integer.parseInt(test_ID));
 		user = manageUser.GetUser(Integer.parseInt(user_ID));
+		List<QuestionInTest> list = manageQuestionInTest.ListTestQuestionInTest(test.getTestID());
 		
 		request.setAttribute("user", user);
 		request.setAttribute("test", test);
+		request.setAttribute("list_questionInTest", list);
 		//request.setAttribute("question", question);
 		
 		

@@ -2,14 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="pl-PL">
+<html>
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	
-	<title>Pytania</title>
+	<title>Tworzenie nowego testu</title>
 </head>
 <body>
 <div class="wrapper">
@@ -22,18 +21,17 @@
 	</div>
 	
 	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="QuestionInTest" class="database.entities.QuestionInTest" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="QuestionInTest" />
-	
-	<jsp:useBean id="Question" class="database.entities.Question" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="Question" />
+	<jsp:useBean id="Test" class="database.entities.Test"
+		scope="session"></jsp:useBean>
 		
-	<jsp:useBean id="test" class="database.entities.Test" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="test" />
+	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
+	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
+	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
+	<jsp:setProperty property="*" name="Test" />
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="ManageQuestionInTest" class="Manage.ManageQuestionInTest" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="ManageQuestionInTest" />
+	<jsp:useBean id="ManageTest"
+		class="Manage.ManageTest" scope="session"></jsp:useBean>
 	
 	
 	<% if(session.getAttribute("session") == "TRUE")
@@ -47,28 +45,21 @@
 			</ol>
 		</div>
 	
-		<center>Pytania: </center>
-		<center>
-				<table>
-					<tr>
-						<th>ID  </th>
-						<th>Pytanie  </th>
-						<th>Odpowiedzi  </th>
-						<th>Odpowiedz  </th>
-						<th>Sprawdz  </th>
-			        
-			        <c:forEach items="${ManageQuestionInTest.ListTestQuestionInTest(test.testID)}" var="QuestionInTest">
-			        	<tr>
-			        		<td>${QuestionInTest.question.questionID}</td>
-			                <td>${QuestionInTest.question.question}</td>
-<%-- 			                <td>${QuestionInTest.question.answers}</td> --%>
-							<td></td>
- 			                <td><input type="text" name="odpowiedz" />  </td>
-		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>
-			        	</tr>
-					</c:forEach>
-				</table>
-		</center>
+	<div class="content">
+		Wprowadz dane nowego testu: <br />
+		<form action="CreateTestNew">
+		    Podaj temat: <br />
+		    <input type="text" name="topic" /><br /> 
+		    Podaj opis: <br />
+		    <input type="text" name="description" /><br />
+		    Podaj czy wydarzenie ma być publiczne(True/False): <br />
+		    <input type="text" name="isPublic" /><br /> 
+		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Utwórz test">
+		</form>
+	</div>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -78,10 +69,8 @@
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
-		<center>Proszę się zalogować.</center>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-	
 </div>
 
 </body>

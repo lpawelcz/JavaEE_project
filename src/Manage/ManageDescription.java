@@ -137,6 +137,30 @@ import database.entities.Test;
 				System.out.println("done Read");
 				return tempDescription;
 			}
+			
+			public Description GetDescription(String topic, String description) {
+				Description tempDescription = null;
+				session = factory.getCurrentSession();
+				Transaction transaction = null;
+
+				try {
+					transaction = session.beginTransaction();
+					tempDescription = (Description) session.createQuery("from Description s where s.topic=" + topic + " AND s.description=" + description ).uniqueResult();
+
+					transaction.commit();
+				} catch (Exception e) {
+
+					if (transaction != null) {
+						transaction.rollback();
+						throw e;
+					}
+				} finally {
+					session.close();
+				}
+
+				System.out.println("done Read");
+				return tempDescription;
+			}
 		//----READING DATA-----------------------------------//	
 
 	}

@@ -218,6 +218,31 @@ public class ManageTest extends Manage {
 		System.out.println("done Read");
 		return tempTest;
 	}
+	
+	
+	public Test GetTest(User author, Description description) {
+		Test tempTest = null;
+		session = factory.getCurrentSession();
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			tempTest = (Test) session.createQuery("from Test s where s.userID=" + Integer.toString(author.getUserID()) + " AND s.descriptionID=" + description.getDescID()).uniqueResult();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				throw e;
+			}
+		} finally {
+			session.close();
+		}
+
+		System.out.println("done Read");
+		return tempTest;
+	}
+	
 	//----READING DATA-----------------------------------//	
 
 }
