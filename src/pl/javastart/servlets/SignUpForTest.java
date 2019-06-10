@@ -33,6 +33,7 @@ public class SignUpForTest extends HttpServlet {
 		
 		request.setAttribute("user", user);
 		request.setAttribute("test", test);
+		
 		//request.setAttribute("question", question);
 		
 		

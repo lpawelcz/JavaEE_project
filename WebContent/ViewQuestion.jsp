@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -21,14 +22,18 @@
 	</div>
 	
 	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="questionInTest" class="database.entities.QuestionInTest" scope="session"></jsp:useBean>
-	<jsp:useBean id="question" class="database.entities.Question" scope="session"></jsp:useBean>
+	<jsp:useBean id="QuestionInTest" class="database.entities.QuestionInTest" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="QuestionInTest" />
+	
+	<jsp:useBean id="Question" class="database.entities.Question" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="Question" />
 		
 	<jsp:useBean id="test" class="database.entities.Test" scope="session"></jsp:useBean>
 	<jsp:setProperty property="*" name="test" />
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="manageQuestionInTest" class="Manage.ManageQuestionInTest" scope="session"></jsp:useBean>
+	<jsp:useBean id="ManageQuestionInTest" class="Manage.ManageQuestionInTest" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="ManageQuestionInTest" />
 	
 	
 	<% if(session.getAttribute("session") == "TRUE")
@@ -43,9 +48,9 @@
 		</div>
 	
 		<center>Pytania: </center>
-		Test ID: ${test.getTestID()} <br />
-		Pytania: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID())} <br />
-		Rozmiar: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size()} <br />
+		Test ID: ${test.testID} <br />
+		Pytania: ${ManageQuestionInTest.ListTestQuestionInTest(test.testID)} <br />
+		Rozmiar: ${ManageQuestionInTest.ListTestQuestionInTest(test.testID).size()} <br />
 		<center>
 				<table>
 					<tr>
@@ -54,25 +59,25 @@
 						<th>Odpowiedzi  </th>
 						<th>Odpowiedz  </th>
 						<th>Sprawdz  </th>
-					</tr>
-					<% for(int i = 0; i < manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size(); i+=1) { %>
-			            <tr>   
-			            	<td><%=i %></td>
-			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()%></td>
-			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()%></td>
-			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()%></td>
-			                <td><input type="text" name="odpowiedz" />  </td>
-		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>
-			            </tr>
-			        <% } %>
+<!-- 					</tr> -->
+<%-- 					<% for(int i = 0; i < ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size(); i+=1) { %> --%>
+<!-- 			            <tr>    -->
+<%-- 			            	<td><%=i %></td> --%>
+<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()%></td> --%>
+<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()%></td> --%>
+<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()%></td> --%>
+<!-- 			                <td><input type="text" name="odpowiedz" />  </td> -->
+<!-- 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td> -->
+<!-- 			            </tr> -->
+<%-- 			        <% } %> --%>
 			        
-			        <c:forEach items="${manageQuestionInTest.ListTestQuestionInTest(test.getTestID())}" var="q">
+			        <c:forEach items="${ManageQuestionInTest.ListTestQuestionInTest(test.testID)}" var="QuestionInTest">
 			        	<tr>
-			        		<td>${q.getQuestion().getQuestionID()}</td>
-			                <td>${q.getQuestion().getQuestion()}</td>
-			                <td>${q.get(i).getQuestion().getAnswers()}</td>
-			                <td><input type="text" name="odpowiedz" />  </td>
-		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>
+			        		<td>${QuestionInTest.question.questionID}</td>
+			                <td>${QuestionInTest.question.question}</td>
+<%-- 			                <td>${QuestionInTest.question.answers}</td> --%>
+<!-- 			                <td><input type="text" name="odpowiedz" />  </td> -->
+<!-- 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td> -->
 			        	</tr>
 					</c:forEach>
 				</table>
