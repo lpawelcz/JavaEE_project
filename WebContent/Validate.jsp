@@ -42,7 +42,7 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
@@ -71,7 +71,7 @@
 		%>
 			<div class="nav">
 				<ol>
-						<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
 						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 						<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
@@ -81,7 +81,7 @@
 		else { %>
 			<div class="nav">
 				<ol>
-						<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+						<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
 						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 				</ol>
