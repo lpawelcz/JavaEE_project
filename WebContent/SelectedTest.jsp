@@ -50,7 +50,7 @@
 			</ol>
 		</div>
 		
-			<table>
+				<table>
 					<tr>
 						<th>Tworca</th>
 						<th>Temat</th>
@@ -70,7 +70,7 @@
 				<tr>
 					<br />
 					<br />
-					<td><a href="SignUpForTest?user_ID=<%=session.getAttribute("userID").toString()%>">Zapisz się na test.</a></td>
+					<td><a href="SignUpForTest?user_ID=<%=session.getAttribute("userID").toString()%>&test_ID=${Test.testID}">Rozpocznij test.</a></td>
 						<%-- <td>${Test.testID}</td> --%> 
 				</tr>
 		<!-- if(session.getAttribute("userID").toString() != "") -->		
