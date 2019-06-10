@@ -45,7 +45,7 @@
 		<center>Pytania: </center>
 		Test ID: ${test.getTestID()} <br />
 		Pytania: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID())} <br />
-		Rozmiar: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size() } <br />
+		Rozmiar: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size()} <br />
 		<center>
 				<table>
 					<tr>
@@ -56,14 +56,25 @@
 						<th>Sprawdz  </th>
 					</tr>
 					<% for(int i = 0; i < manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size(); i+=1) { %>
-			            <tr>      
-			                <td>${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()}</td>
-			                <td>${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()}</td>
-			                <td>${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()}</td>
+			            <tr>   
+			            	<td><%=i %></td>
+			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()%></td>
+			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()%></td>
+			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()%></td>
 			                <td><input type="text" name="odpowiedz" />  </td>
 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>
 			            </tr>
 			        <% } %>
+			        
+			        <c:forEach items="${manageQuestionInTest.ListTestQuestionInTest(test.getTestID())}" var="q">
+			        	<tr>
+			        		<td>${q.getQuestion().getQuestionID()}</td>
+			                <td>${q.getQuestion().getQuestion()}</td>
+			                <td>${q.get(i).getQuestion().getAnswers()}</td>
+			                <td><input type="text" name="odpowiedz" />  </td>
+		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>
+			        	</tr>
+					</c:forEach>
 				</table>
 		</center>
 	<% } 
