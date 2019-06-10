@@ -45,7 +45,8 @@
 		<center>Pytania: </center>
 		Test ID: ${test.getTestID()} <br />
 		Pytania: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID())} <br />
-		Rozmiar: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size()} <br />
+		Rozmiar: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size() } <br />
+		Pytanie jakies: ${manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(1).getQuestion().getQuestion() } <br />
 		<center>
 				<table>
 					<tr>
@@ -56,8 +57,7 @@
 						<th>Sprawdz  </th>
 					</tr>
 					<% for(int i = 0; i < manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size(); i+=1) { %>
-			            <tr>   
-			            	<td><%=i %></td>
+			            <tr>      
 			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()%></td>
 			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()%></td>
 			                <td><%=manageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()%></td>

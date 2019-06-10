@@ -48,7 +48,14 @@
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
 			</ol>
 		</div>
-		<center>Jesteś zalogowany.</center>
+		
+		<center>Nastąpiło wylodowanie.</center>
+		
+		<%
+			session.setAttribute("session","False"); 
+			session.setAttribute("userID", "");
+			session.setAttribute("userName", "");
+		%>
 	<% } 
 	else { %>
 	<%

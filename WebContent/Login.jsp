@@ -31,6 +31,13 @@
 		</div>
 		
 		<center>Jesteś już zalogowany.</center>
+		
+		<div class="content">
+		  <form method="post" action="Validate.jsp">
+		        <input type="submit" value="Wyloguj">
+		    </form>
+		</div>
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -47,7 +54,7 @@
 		        <input type="text" name="name" /><br /> 
 		        Podaj swoje haslo: <br />
 		        <input type="text" name="password" /><br /> 
-		        <input type="submit" value="zaloguj">
+		        <input type="submit" value="Zaloguj">
 		    </form>
 		</div>
 	<% } %>
