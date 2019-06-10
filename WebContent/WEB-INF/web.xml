@@ -16,6 +16,12 @@
     <url-pattern>/SelectedTestSend</url-pattern>
   </servlet>
   
+  <servlet>
+    <servlet-name>SignUpForTest</servlet-name>
+    <servlet-class>pl.javastart.servlets.SignUpForTest</servlet-class>
+    <url-pattern>/SignUpForTest</url-pattern>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>Hello World</servlet-name>
     <url-pattern>/test</url-pattern>

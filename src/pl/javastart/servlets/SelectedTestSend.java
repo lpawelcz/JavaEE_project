@@ -29,7 +29,7 @@ public class SelectedTestSend extends HttpServlet {
         test = manageTests.GetTest(Integer.parseInt(test_ID));							// pobierz test o danym id
         
         request.setAttribute("Test", test);												// zapisz obiekt testu w sesji
-
+        
         request.getRequestDispatcher("SelectedTest.jsp").forward(request, response);	// przekieruj sterowanie do jsp        
 	}
 

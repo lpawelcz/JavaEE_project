@@ -152,106 +152,17 @@ public class DataSource
 		questionDatatFromDB = manageQuestions.ListQuestions();
 		questionInTestDatatFromDB = manageQuestionInTests.ListQuestionInTest();
 		resultDatatFromDB = manageResults.ListResult();
-		
-		
-		/*try {
-			session.beginTransaction();
-			usersDataFromDB = session.createCriteria(User.class).list();
-			session.getTransaction().commit();
-			System.out.println("pobrano userow");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}	
-		/*
-		testsDataFromDB = new ArrayList<Test>();
-		try {
-			session.beginTransaction();
-			testsDataFromDB = session.createCriteria(Test.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano testy z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		answerDatatFromDB = new ArrayList<Answer>();
-		try {
-			session.beginTransaction();
-			answerDatatFromDB = session.createCriteria(Answer.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano odpowiedzi z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		completedTestDatatFromDB = new ArrayList<CompletedTest>();
-		try {
-			session.beginTransaction();
-			completedTestDatatFromDB = session.createCriteria(CompletedTest.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano ukoñczone testy z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		descriptionDatatFromDB = new ArrayList<Description>();
-		try {
-			session.beginTransaction();
-			descriptionDatatFromDB = session.createCriteria(Description.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano opisy z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		opinionDatatFromDB = new ArrayList<Opinion>();
-		try {
-			session.beginTransaction();
-			opinionDatatFromDB = session.createCriteria(Opinion.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano opinie z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		questionDatatFromDB = new ArrayList<Question>();
-		try {
-			session.beginTransaction();
-			questionDatatFromDB = session.createCriteria(Question.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano pytania z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		questionInTestDatatFromDB = new ArrayList<QuestionInTest>();
-		try {
-			session.beginTransaction();
-			questionInTestDatatFromDB = session.createCriteria(QuestionInTest.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano pytania w tescie z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		resultDatatFromDB = new ArrayList<Result>();
-		try {
-			session.beginTransaction();
-			resultDatatFromDB = session.createCriteria(Result.class).list();
-			session.getTransaction().commit();
-			System.out.println("Pobrano wyniki z bazy danych.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}//*/
 	}
 	
 	public boolean userInData(User user)
 	{
-		System.out.println("user in data");
+		//System.out.println("user in data ####################################################");
 		for(User tempUser : usersDataFromDB)
 		{
 //			System.out.println(tempUser);
 			if(user.getName().equals(tempUser.getName()) && user.getPassword().equals(tempUser.getPassword()))
 			{
+				//System.out.println("ID: " + user.getUserID() + ", name: " + user.getName());
 				return true;
 			}
 		}

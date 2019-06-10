@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,9 @@
 	
 	<jsp:useBean id="dataSource"
 		class="main.DataSource" scope="session"></jsp:useBean>
+		
+	<jsp:useBean id="ManageUser"
+		class="Manage.ManageUser" scope="session"></jsp:useBean>
 
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
@@ -59,11 +63,17 @@
 			        	<td>${Test.author.name}</td>
 			        	<td>${Test.description.topic}</td>
 			        	<td>${Test.description.description}</td>
-
 			        </tr>
 
 				</table>
-		
+				
+				<tr>
+					<br />
+					<br />
+					<td><a href="SignUpForTest?user_ID=<%=session.getAttribute("userID").toString()%>">Zapisz się na test.</a></td>
+						<%-- <td>${Test.testID}</td> --%> 
+				</tr>
+		<!-- if(session.getAttribute("userID").toString() != "") -->		
 	<% } 
 	else { %>
 		<div class="nav">

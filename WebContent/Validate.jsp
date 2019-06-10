@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
@@ -35,6 +34,9 @@
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="dataSource"
 		class="main.DataSource" scope="session"></jsp:useBean>
+		
+	<jsp:useBean id="userManage"
+		class="Manage.ManageUser" scope="session"></jsp:useBean>
 
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
@@ -51,9 +53,14 @@
 	else { %>
 	<%
 		String result = "";
+		System.out.println("User w validate: " + user.getUserID() + " ," + user.getName());
 		if(dataSource.userInData(user)) {
-			result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
-			session.setAttribute("session","TRUE");  
+			result = "Poprawny użytkownik oraz hasło- ZALOGOWANO";
+			session.setAttribute("session","TRUE"); 
+			user = userManage.GetUser(user.getName());
+			String id = Integer.toString(user.getUserID());
+			session.setAttribute("userID", id);
+			session.setAttribute("userName", user.getName());
 		%>
 			<div class="nav">
 				<ol>
@@ -79,6 +86,7 @@
 		<!-- Wyświetlenie nazwy użytkownika. -->
 		Nazwa: <%= user.getName() %><br />
 		pass: <%= user.getPassword() %><br />
+		ID ż: <%= user.getUserID() %><br />
 	
 		
 		<%= result %>

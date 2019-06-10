@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -57,7 +57,7 @@
 					<c:forEach var="Test" items="${ManageTest.ListTest()}">
 						<tr>
 							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
-<%-- 							<td>${Test.testID}</td> --%>
+<%-- 							<td>${Test.testID}</td> --%> <!-- co to jest? -->
 							<td>${Test.description.topic}</td>
 							<td>${Test.description.description}</td>
 						</tr>					
