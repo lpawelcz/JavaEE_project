@@ -126,11 +126,11 @@ public class ConnectionTest {
 //------RESULT--------------------------------------------------------------//	
 		
 //------ANSWER--------------------------------------------------------------//	
-		answerManager.InsertAnswer("odp1");
-		answerManager.InsertAnswer("odp2");
-		answerManager.InsertAnswer("odp9");
-		answerManager.InsertAnswer("odp4");
-		answerManager.InsertAnswer("odp5");
+		answerManager.InsertAnswer("odp1",null);
+		answerManager.InsertAnswer("odp2",null);
+		answerManager.InsertAnswer("odp9",null);
+		answerManager.InsertAnswer("odp4",null);
+		answerManager.InsertAnswer("odp5",null);
 		
 		Answer Answer1 = answerManager.GetAnswer(1);
 		Answer Answer2 = answerManager.GetAnswer(2);
@@ -143,7 +143,7 @@ public class ConnectionTest {
 		answers.add(Answer3);
 		answers.add(Answer4);
 		
-		answerManager.UpdateAnswer(3, "odp3");
+		answerManager.UpdateAnswer(3, "odp3",null);
 		answerManager.DeleteAnswer(5);
 		answerManager.ListAnswers();
 //------ANSWER--------------------------------------------------------------//

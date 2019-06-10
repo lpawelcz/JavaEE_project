@@ -75,9 +75,9 @@
 			        	<tr>
 			        		<td>${QuestionInTest.question.questionID}</td>
 			                <td>${QuestionInTest.question.question}</td>
-<%-- 			                <td>${QuestionInTest.question.answers}</td> --%>
-<!-- 			                <td><input type="text" name="odpowiedz" />  </td> -->
-<!-- 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td> -->
+ 			                <td>${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}</td> 
+ 			                <td><input type="text" name="odpowiedz" />  </td> 
+ 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td> 
 			        	</tr>
 					</c:forEach>
 				</table>
