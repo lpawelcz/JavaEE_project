@@ -65,18 +65,19 @@
 <!-- 						<th>Sprawdź  </th> -->
 			        
 			        <c:forEach items="${ManageQuestionInTest.ListTestQuestionInTest(test.testID)}" var="QuestionInTest" varStatus="loop1">
-<!-- 			        	<tr> -->
-<%-- 			        		<td>${QuestionInTest.question.questionID}</td> --%>
-<%-- 			                <td>${QuestionInTest.question.question}</td> --%>
-<%--  			                <td>${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}</td>  --%>
-<!--  			                <td><input type="text" name="odpowiedz" />  </td>  -->
-<!--  		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td>  -->
-<!-- 			        	</tr> -->			        	
-<%-- 			        	<p>${QuestionInTest.question.questionID}.${QuestionInTest.question.question}</p> 		<%--	ID testu													--%>
+<%-- 			        <p>${QuestionInTest.question.questionID}.${QuestionInTest.question.question}</p> 		<%--	ID testu													--%>
 			        	<p>${loop1.index+1}.${QuestionInTest.question.question}</p>			<%-- numer pytania w teście --%>
-			        	<c:forEach items="${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}" var="Answer" varStatus="loop2">
-						<input type="radio" name="zad${loop1.index}" value="${loop2.index}">${Answer.answer}
-						</c:forEach>
+						<c:choose>
+   							<c:when test="${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID).size()  == '1'}">
+   								odp: <input type="text" name="zad${loop1.index}" />
+    						</c:when>    
+    						<c:otherwise>
+			        			<c:forEach items="${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}" var="Answer" varStatus="loop2">
+									<input type="radio" name="zad${loop1.index}" value="${loop2.index}">${Answer.answer}
+								</c:forEach> 
+        						<br />
+    						</c:otherwise>
+						</c:choose>		        	
 						<br><br>
 					</c:forEach>
 				</table>
