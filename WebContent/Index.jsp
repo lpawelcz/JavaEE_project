@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +18,15 @@
 		</div>
 	</div>
 
-  <center> <font color="gray" size="7"> Hello World! </font> </center>
+  <center> <font color="gray" size="4"> <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Sprawdz</a></li> jaką dystrybucją linuxa jesteś!</font> </center>
 
     <% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
 			</ol>
 		</div>
 	
@@ -39,7 +37,7 @@
 	     $ <input id="input" type="text" autofocus />
 	    </div>
 		</div>
-	
+		
 	    <script src="bash-emulator.min.js"></script>
 	    <script>
 	      var input = document.getElementById('input')
@@ -152,7 +150,7 @@
 	else { %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
@@ -160,10 +158,7 @@
 	<% } %>
 
 <%
-    // To jest skryptlet.  Zauważ, że zmienna
-    // "date" zadeklarowana w pierwszym wbudowanym
-    // wyrażeniu jest dostępna również w tym późniejszym.
-    System.out.println( "Test helloworld" );
+
     java.util.Date date = new java.util.Date();
 %>
 Obecnie mamy <%= date %>
