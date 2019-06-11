@@ -145,7 +145,7 @@ import database.entities.Test;
 
 				try {
 					transaction = session.beginTransaction();
-					tempDescription = (Description) session.createQuery("from Description s where s.topic=" + topic + " AND s.description=" + description ).uniqueResult();
+					tempDescription = (Description) session.createQuery("from Description s where s.topic=" + topic + " and s.description=" + description ).uniqueResult();
 
 					transaction.commit();
 				} catch (Exception e) {
