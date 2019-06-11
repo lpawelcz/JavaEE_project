@@ -51,22 +51,7 @@
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
-	
-	<div class="content">
-		Wprowadz dane nowego testu: <br />
-		<form action="CreateTestNew">
-		    Podaj temat: <br />
-		    <input type="text" name="topic" /><br /> 
-		    Podaj opis: <br />
-		    <input type="text" name="description" /><br />
-		    Podaj czy wydarzenie ma być publiczne(True/False): <br />
-		    <input type="text" name="isPublic" /><br /> 
-		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Utwórz test">
-		</form>
-	</div>
-	
-	<center>Pytania: </center>
+
 		<center>
 				<table>
 					<tr>
@@ -83,15 +68,18 @@
 							<td></td>
 							<form action="CreateTestNew">
 		        				<td><input type="submit" value="Dodaj pytanie">  </td>
-		        				<input type="hidden" name="question_ID" value=${Question.questionID} /><br />
-		        				<input type="hidden" name="test_ID" value=${Test.testID} /><br /> <!-- zobaczyć czy dobrze się wysyłą -->
-								<input type="submit" value="Utwórz test">
+		        				<input type="hidden" name="question_ID" value=${Question.questionID} />
+		        				<input type="hidden" name="test_ID" value=${Test.testID} /> <!-- zobaczyć czy dobrze się wysyłą -->
 							</form>
 			        	</tr>
 					</c:forEach>
 				</table>
 		</center>
-		
+		<center>
+			<form action="CreateTestNew">
+				<input type="submit" value="Utwórz test">
+			</form>
+		</center>
 	<% } 
 	else { %>
 		<div class="nav">
