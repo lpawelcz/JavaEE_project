@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +22,9 @@
 	{ %>
 		<div class="nav">
 			<ol>
-				<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
 			</ol>
 		</div>
 		
@@ -42,9 +40,9 @@
 	else { %>
 		<div class="nav">
 			<ol>
-				<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
 	
@@ -52,7 +50,7 @@
 		  <form method="post" action="Validate.jsp">
 		        Podaj swoj login: <br />
 		        <input type="text" name="name" /><br /> 
-		        Podaj swoje haslo: <br />
+		        Podaj swoje hasło: <br />
 		        <input type="text" name="password" /><br /> 
 		        <input type="submit" value="Zaloguj">
 		    </form>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +41,13 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
 			</ol>
 		</div>
 		
-		<center>Nastąpiło wylodowanie.</center>
+		<center>Nastąpiło wylogowanie.</center>
 		
 		<%
 			session.setAttribute("session","False"); 
@@ -71,19 +69,18 @@
 		%>
 			<div class="nav">
 				<ol>
-						<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-						<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
 				</ol>
 			</div>
 		<% }
 		else { %>
 			<div class="nav">
 				<ol>
-						<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-						<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-						<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 				</ol>
 			</div>
 			
@@ -93,7 +90,7 @@
 		<!-- Wyświetlenie nazwy użytkownika. -->
 		Nazwa: <%= user.getName() %><br />
 		pass: <%= user.getPassword() %><br />
-		ID ż: <%= user.getUserID() %><br />
+		ID : <%= user.getUserID() %><br />
 	
 		
 		<%= result %>
