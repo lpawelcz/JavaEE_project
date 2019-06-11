@@ -142,16 +142,15 @@ import database.entities.Test;
 				Description tempDescription = null;
 				session = factory.getCurrentSession();
 				Transaction transaction = null;
-				System.out.println("# Rozpoczêcie szukania opisu: topic-" + topic + ", opis-" + description);
+				System.out.println("# Rozpoczï¿½cie szukania opisu: topic-" + topic + ", opis-" + description);
 				
 				try {
 					transaction = session.beginTransaction();
-					System.out.println("# Rozpoczêcie transakcji, zapytanie: " + "from Description s where s.topic=\"" + topic + "\" and s.description=\"" + description + "\"");
+					System.out.println("# Rozpoczï¿½cie transakcji, zapytanie: " + "from Description s where s.topic=\"" + topic + "\" and s.description=\"" + description + "\"");
 					tempDescription = (Description) session.createQuery("from Description s where s.topic=\'" + topic + "\' and s.description=\'" + description + "\'").uniqueResult();
-					//tempDescription = (Description) session.createQuery("from Description s where s.topic=\"tem\" and s.description=\"opi\"").uniqueResult();
 					System.out.println("# Ustalenie zapytania.");
 					transaction.commit();
-					System.out.println("# Zakoñczenie transakcji, commit.");
+					System.out.println("# Zakoï¿½czenie transakcji, commit.");
 				} catch (Exception e) {
 
 					if (transaction != null) {
