@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Tworzenie nowego testu</title>
 </head>
 <body>
 <div class="wrapper">
@@ -37,44 +38,39 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
 	
-		<center>Dostępne testy: </center>
-		<center>
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Temat</th>
-						<th>Opis</th>
-					</tr>
-					
-					<c:forEach var="Test" items="${ManageTest.ListTest()}">
-						<tr>
-							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
-<%-- 							<td>${Test.testID}</td> --%> <!-- co to jest? -->
-							<td>${Test.description.topic}</td>
-							<td>${Test.description.description}</td>
-						</tr>					
-      				</c:forEach>      				
-				</table>
-		</center>
+	<div class="content">
+		Wprowadz dane nowego testu: <br />
+		<form action="CreateTestNew">
+		    Podaj temat: <br />
+		    <input type="text" name="topic" /><br /> 
+		    Podaj opis: <br />
+		    <input type="text" name="description" /><br />
+		    Podaj czy wydarzenie ma być publiczne(True/False): <br />
+		    <input type="text" name="isPublic" /><br /> 
+		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Utwórz test">
+		</form>
+	</div>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
-		<center>Proszę się zalogować.</center>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-	
 </div>
 
 </body>

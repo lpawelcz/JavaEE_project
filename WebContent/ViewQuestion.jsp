@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pl-PL">
@@ -40,10 +39,9 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
 			</ol>
 		</div>
 	
@@ -57,19 +55,8 @@
 						<th>ID  </th>
 						<th>Pytanie  </th>
 						<th>Odpowiedzi  </th>
-						<th>Odpowiedz  </th>
-						<th>Sprawdz  </th>
-<!-- 					</tr> -->
-<%-- 					<% for(int i = 0; i < ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).size(); i+=1) { %> --%>
-<!-- 			            <tr>    -->
-<%-- 			            	<td><%=i %></td> --%>
-<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestionID()%></td> --%>
-<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getQuestion()%></td> --%>
-<%-- 			                <td><%=ManageQuestionInTest.ListTestQuestionInTest(test.getTestID()).get(i).getQuestion().getAnswers()%></td> --%>
-<!-- 			                <td><input type="text" name="odpowiedz" />  </td> -->
-<!-- 		        			<td><input type="submit" value="Sprawdz odpowiedz">  </td> -->
-<!-- 			            </tr> -->
-<%-- 			        <% } %> --%>
+						<th>Odpowiedź  </th>
+						<th>Sprawdź  </th>
 			        
 			        <c:forEach items="${ManageQuestionInTest.ListTestQuestionInTest(test.testID)}" var="QuestionInTest">
 			        	<tr>
@@ -85,8 +72,7 @@
 	<% } 
 	else { %>
 		<div class="nav">
-			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>

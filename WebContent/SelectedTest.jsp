@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -8,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Test</title>
+	<title>zapraszam na tets</title>
 </head>
 
 <body>
@@ -43,19 +42,18 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
 			</ol>
 		</div>
 		
 				<table>
 					<tr>
-						<th>Tworca</th>
+						<th>Twórca</th>
 						<th>Temat</th>
 						<th>Opis</th>
-						<th>Ilosc pytan</th>
+						<th>Ilość pytań</th>
 						<th></th>
 					</tr>
 
@@ -78,7 +76,7 @@
 	else { %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
