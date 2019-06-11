@@ -227,8 +227,9 @@ public class ManageTest extends Manage {
 
 		try {
 			transaction = session.beginTransaction();
-			tempTest = (Test) session.createQuery("from Test s where s.userID=" + Integer.toString(author.getUserID()) + " AND s.descriptionID=" + description.getDescID()).uniqueResult();
-
+			System.out.println("# Zapytanie: from Test s where s.author=" + author.getUserID() + " and s.description=" + description.getDescID());
+			tempTest = (Test) session.createQuery("from Test s where s.author.userID=" + Integer.toString(author.getUserID()) + " and s.description.descID=" + Integer.toString(description.getDescID())).uniqueResult();
+			System.out.println("# Zakoñczo transakcje.");	
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {

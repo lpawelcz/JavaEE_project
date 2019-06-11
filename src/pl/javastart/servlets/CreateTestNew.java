@@ -30,16 +30,18 @@ public class CreateTestNew extends HttpServlet {
 		String userID = request.getParameter("user_ID");
 		boolean isPublic = false;
 		
-		out.print("Otrzymane dane: " + test_topic + ", " + test_description + " " + test_isPublic + ", user id: " + userID);
+		out.println("Otrzymane dane: " + test_topic + ", " + test_description + " " + test_isPublic + ", user id: " + userID + ".\n");
+		
 		if(test_isPublic == "True" || test_isPublic == "true" || test_isPublic == "T" || test_isPublic == "t" || test_isPublic == "TRUE" || test_isPublic == "Tak" || test_isPublic == "tak")
 			isPublic = true;
+		
 		try
 		{
 			user = manageUser.GetUser(Integer.parseInt(userID));
+			out.println("User from base: " + user.getName() + ", ID: " + user.getUserID() + ".\n");
 		}catch(Exception e){
 			System.out.println("Problem ze znalezieniem usera.");
 		}
-		
 		
 		try
 		{
@@ -52,7 +54,11 @@ public class CreateTestNew extends HttpServlet {
 		
 		try
 		{
+			//description = manageDescription.GetDescription(2);
+			//out.println("Description from base: " + description.getDescription() + ", ID: " + description.getDescID() + ".\n");
+			
 			description = manageDescription.GetDescription(description.getTopic(), description.getDescription());
+			System.out.println("@ New description from base: " + description.getDescription() + ", ID: " + description.getDescID() + ".\n");
 		}catch(Exception e){
 			System.out.println("Problem ze znalezieniem opisu w bazie.");
 		}
@@ -62,6 +68,7 @@ public class CreateTestNew extends HttpServlet {
 			//User author, Description description, boolean isPublic
 			test = new Test(user, description, isPublic);
 			manageTests.InsertTest(user, description, isPublic);
+			System.out.println("@ New test: " + test.getTestID() + ", " + test.toString() + ".\n");
 		}catch(Exception e){
 			System.out.println("Problem z stworzeniem nowego testu w bazie.");
 		}
@@ -70,11 +77,12 @@ public class CreateTestNew extends HttpServlet {
 		{
 			//User author, Description description, boolean isPublic
 			test = manageTests.GetTest(user, description);
+			System.out.println("@ New test from base: " + test.toString() + ".\n");
 		}catch(Exception e){
 			System.out.println("Problem ze znalezieniem testu w bazie.");
 		}
-		
 		request.setAttribute("test", test);
+		
 		
 		//tutaj jakieœ przekierowanie do strony z list¹ pytañ
 		request.getRequestDispatcher("ChooseQuestionToTest.jsp").forward(request, response);
