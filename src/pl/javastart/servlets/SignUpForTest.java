@@ -28,12 +28,13 @@ public class SignUpForTest extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String user_ID = request.getParameter("user_ID");								// pobierz z requesta id testu
 		String test_ID = request.getParameter("test_ID");
-		String question = "0";
 		out.print("Hello World " + user_ID + ", " + test_ID);
 		
 		test = manageTests.GetTest(Integer.parseInt(test_ID));
 		user = manageUser.GetUser(Integer.parseInt(user_ID));
 		List<QuestionInTest> list = manageQuestionInTest.ListTestQuestionInTest(test.getTestID());
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		request.setAttribute("user", user);
 		request.setAttribute("test", test);
