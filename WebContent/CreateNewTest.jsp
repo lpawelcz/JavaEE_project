@@ -38,10 +38,12 @@
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/ViewUser.jsp">Profil</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewQuestion.jsp">Nowe pytania</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
 			</ol>
 		</div>
 	
