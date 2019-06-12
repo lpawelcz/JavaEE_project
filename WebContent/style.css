@@ -192,14 +192,14 @@ ol > li > ul > li:hover > a
 }
 
 #terminal {
-      	position: relative;
-      	font-family: "Courier New";
-		color: white;
-		font-size: 12pt;
-		position: center;
-		outline-style: solid;
-		outline-color: #FFA500;
-		width: 60%;
+        position: relative;
+        font-family: "Courier New";
+    color: white;
+    font-size: 12pt;
+    position: center;
+    outline-style: solid;
+    outline-color: #FFA500;
+    width: 60%;
     margin: auto;
  
       }
@@ -209,6 +209,7 @@ ol > li > ul > li:hover > a
         font-family: monospace;
         line-height: 50%;
         color: white;
+        width: 80%;
       }
 
       #output {
