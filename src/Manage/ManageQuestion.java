@@ -203,7 +203,7 @@ public class ManageQuestion extends Manage {
 
 			try {
 				transaction = session.beginTransaction();
-				tempQuestion = (Question) session.createQuery("from Question s where s.question= '"+question + "' s.correctID = '" + Integer.toString(CorrectID)+"'").uniqueResult();
+				tempQuestion = (Question) session.createQuery("from Question s where s.question='"+question + "' and s.correctID = '" + Integer.toString(CorrectID)+"'").uniqueResult();
 
 				transaction.commit();
 			} catch (Exception e) {

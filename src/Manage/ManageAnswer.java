@@ -35,7 +35,7 @@ public class ManageAnswer extends Manage {
 	//----INSERTING DATA---------------------------------//	
 		
 	//----UPDATE DATA------------------------------------//
-			public int UpdateAnswer(int answerID, String answer, Question question) {
+			public int UpdateAnswer(int answerID, Question question) {
 
 				session = factory.getCurrentSession();
 				Transaction transaction = null;
@@ -43,8 +43,6 @@ public class ManageAnswer extends Manage {
 				try {
 					transaction = session.beginTransaction();
 					Answer tempAnswer = session.get(Answer.class, answerID);
-					if(answer.equals(null))
-						tempAnswer.setAnswer(answer);
 					if(question != null)
 						tempAnswer.setQuestion(question);
 	// update smth on object

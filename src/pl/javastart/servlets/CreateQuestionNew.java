@@ -92,29 +92,29 @@ public class CreateQuestionNew extends HttpServlet {
 //			manageQuestion.UpdateQuestion(questionQ.getQuestionID(), questionQ.getQuestion(), questionQ.getAnswers(), questionQ.getCorrectID());
 			
 		}catch(Exception e){
-			System.out.println("Problem z stworzeniem nowych odpowiedzi w bazie.");
+			System.out.println("Problem z stworzeniem nowych odpowiedzi w bazie."+e.getMessage());
 		}
 		
-		try
-		{
+	//	try
+	//	{
 			//int DTYPE, User author, String question, List<Answer> answers, int correctID
 			manageQuestion.InsertQuestion(dType, user, question, answers, CorrectAnswer.getAnswerID());
 			questionQ = manageQuestion.GetQuestion(question, CorrectAnswer.getAnswerID());
 			
-			answerManager.UpdateAnswer(CorrectAnswer.getAnswerID(), null, questionQ);
-			answerManager.UpdateAnswer(Answer2.getAnswerID(), null, questionQ);
-			answerManager.UpdateAnswer(Answer3.getAnswerID(), null, questionQ);
-			answerManager.UpdateAnswer(Answer4.getAnswerID(), null, questionQ);
+			answerManager.UpdateAnswer(CorrectAnswer.getAnswerID(), questionQ);
+			answerManager.UpdateAnswer(Answer2.getAnswerID(), questionQ);
+			answerManager.UpdateAnswer(Answer3.getAnswerID(), questionQ);
+			answerManager.UpdateAnswer(Answer4.getAnswerID(), questionQ);
 			
 			
 			
 			
-		}catch(Exception e){
-			System.out.println("Problem z stworzeniem nowego pytania w bazie.");
-		}
+	//	}catch(Exception e){
+	//		System.out.println("Problem z stworzeniem nowego pytania w bazie."+e.);
+	//	}
 		
-		try
-		{
+		//try
+		//{
 			List<Question> l = manageQuestion.ListUserQuestions(user.getName());
 			
 			for(int i=0;i<l.size();i++)//pobieram stworzone pytanie z bazy
@@ -124,9 +124,9 @@ public class CreateQuestionNew extends HttpServlet {
 					questionQ = l.get(i);
 				}
 			}
-		}catch(Exception e){
-			System.out.println("Problem z odczytaniem pytania w bazie.");
-		}
+		//}catch(Exception e){
+		//	System.out.println("Problem z odczytaniem pytania w bazie."+e.getMessage());
+		//}
 		
 		
 		
