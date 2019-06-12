@@ -39,7 +39,7 @@
 			</ol>
 		</div>
 		
-		Stworzony test przez użytkownika: <br />
+		Stworzone testy przez użytkownika: <br />
 		<center>
 				<table>
 					<tr>

@@ -21,8 +21,11 @@
 	</div>
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="ManageTest"
-		class="Manage.ManageTest" scope="session"></jsp:useBean>
+	<jsp:useBean id="ManageCompletedTest"
+		class="Manage.ManageCompletedTest" scope="session"></jsp:useBean>
+		
+	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="User" />
 	
 	<!-- session.getAttribute("session") -->
 	<% if("TRUE" == "TRUE")
@@ -35,24 +38,23 @@
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
-	
-	<div class="content">
-		Informacje o użytkowniku: <br />
-		<form action="ViewUserCompletedTests.jsp">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Wyświetl zrobione testy">
-		</form>
 		
-		<form action="ViewUserTests.jsp">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Wyświetl stworzone testy">
-		</form>
-		
-		<form action="CreateQuestionNew">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Wyświetl stworzone pytania">
-		</form>
-	</div>
+		Ukończone testy przez użytkownika: <br />
+		<center>
+				<table>
+					<tr>
+						<th>ID  </th>
+						<th>Punkty  </th>
+			        	<th>Procent opanowania  </th>
+			        <c:forEach items="${ManageCompletedTest.ListUserTests(User.userID)}" var="CompletedTest">
+			        	<tr>
+			        		<td>${CompletedTest.completedtestID}</td>
+			                <td>${CompletedTest.result.points}</td>
+			                <td>${CompletedTest.result.prcntgOfUnderstanding}</td>
+			        	</tr>
+					</c:forEach>
+				</table>
+		</center>
 	
 		
 	<% } 
