@@ -35,7 +35,7 @@ public class ManageAnswer extends Manage {
 	//----INSERTING DATA---------------------------------//	
 		
 	//----UPDATE DATA------------------------------------//
-			public int UpdateAnswer(int answerID, String answer, Question question) {
+			public int UpdateAnswer(int answerID, Question question) {
 
 				session = factory.getCurrentSession();
 				Transaction transaction = null;
@@ -43,8 +43,6 @@ public class ManageAnswer extends Manage {
 				try {
 					transaction = session.beginTransaction();
 					Answer tempAnswer = session.get(Answer.class, answerID);
-					if(answer.equals(null))
-						tempAnswer.setAnswer(answer);
 					if(question != null)
 						tempAnswer.setQuestion(question);
 	// update smth on object
@@ -151,6 +149,52 @@ public class ManageAnswer extends Manage {
 			try {
 				transaction = session.beginTransaction();
 				tempAnswer = (Answer) session.createQuery("from Answer s where s.answerID=" + Integer.toString(asnwerID)).uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempAnswer;
+		}
+		
+		public Answer GetAnswer(String answer) {
+			Answer tempAnswer = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.answer=\'" + answer + "\'").uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempAnswer;
+		}
+		
+		public Answer GetAnswer(int questionID, String answer) {
+			Answer tempAnswer = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.questionID=" + Integer.toString(questionID) + " and s.answer=\'" + answer + "\'").uniqueResult();
 
 				transaction.commit();
 			} catch (Exception e) {

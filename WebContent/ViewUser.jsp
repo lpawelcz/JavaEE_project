@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Użytkownik</title>
 </head>
 <body>
 <div class="wrapper">
@@ -19,20 +19,11 @@
 		</div>
 	</div>
 	
-	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="Test" class="database.entities.Test"
-		scope="session"></jsp:useBean>
-		
-	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
-	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
-	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
-	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageTest"
 		class="Manage.ManageTest" scope="session"></jsp:useBean>
 	
-	
+	<!-- session.getAttribute("session") -->
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
@@ -46,25 +37,25 @@
 			</ol>
 		</div>
 	
-		<center>Dostępne testy: </center>
-		<center>
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Temat</th>
-						<th>Opis</th>
-					</tr>
-					
-					<c:forEach var="Test" items="${ManageTest.ListTest()}">
-						<tr>
-							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
-<%-- 							<td>${Test.testID}</td> --%> <!-- co to jest? -->
-							<td>${Test.description.topic}</td>
-							<td>${Test.description.description}</td>
-						</tr>					
-      				</c:forEach>      				
-				</table>
-		</center>
+	<div class="content">
+		Informacje o użytkowniku: <br />
+		<form action="ViewUserCompletedTests.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />   --%>
+			<input type="submit" value="Wyświetl zrobione testy">
+		</form>
+		
+		<form action="ViewUserTests.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID?userID=${userID}" value=<%=session.getAttribute("userID") %> /><br />   --%>
+			<input type="submit" value="Wyświetl stworzone testy">
+		</form>
+		
+		<form action="ViewUserQuestions.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />   --%>
+			<input type="submit" value="Wyświetl stworzone pytania">
+		</form>
+	</div>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -74,10 +65,8 @@
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
-		<center>Proszę się zalogować.</center>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-	
 </div>
 
 </body>

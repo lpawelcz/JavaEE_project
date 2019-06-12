@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Ukończone pytania</title>
 </head>
 <body>
 <div class="wrapper">
@@ -18,21 +18,14 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="Test" class="database.entities.Test"
-		scope="session"></jsp:useBean>
 		
-	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
-	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
-	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
+	<jsp:useBean id="ManageCompletedTest" class="Manage.ManageCompletedTest" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="ManageCompletedTest" />
+		
+	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="User" />
 	
-	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="ManageTest"
-		class="Manage.ManageTest" scope="session"></jsp:useBean>
-	
-	
+	<!-- session.getAttribute("session") -->
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
@@ -45,26 +38,25 @@
 					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
 			</ol>
 		</div>
-	
-		<center>Dostępne testy: </center>
+		
+		Ukończone testy przez użytkownika: <br />
 		<center>
 				<table>
 					<tr>
-						<th>ID</th>
-						<th>Temat</th>
-						<th>Opis</th>
-					</tr>
-					
-					<c:forEach var="Test" items="${ManageTest.ListTest()}">
-						<tr>
-							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
-<%-- 							<td>${Test.testID}</td> --%> <!-- co to jest? -->
-							<td>${Test.description.topic}</td>
-							<td>${Test.description.description}</td>
-						</tr>					
-      				</c:forEach>      				
+						<th>ID  </th>
+						<th>Punkty  </th>
+			        	<th>Procent opanowania  </th>
+			        <c:forEach items="${ManageCompletedTest.ListUserCompletedTest(Integer.parseInt(userID))}" var="CompletedTest">
+			        	<tr>
+			        		<td>${CompletedTest.completedtestID}</td>
+			                <td>${CompletedTest.result.points}</td>
+			                <td>${CompletedTest.result.prcntgOfUnderstanding}</td>
+			        	</tr>
+					</c:forEach>
 				</table>
 		</center>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -74,10 +66,8 @@
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
-		<center>Proszę się zalogować.</center>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-	
 </div>
 
 </body>

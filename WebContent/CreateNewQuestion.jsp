@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Lista testów</title>
+	<title>Tworzenie nowego pytania</title>
 </head>
 <body>
 <div class="wrapper">
@@ -19,19 +19,9 @@
 		</div>
 	</div>
 	
-	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="Test" class="database.entities.Test"
-		scope="session"></jsp:useBean>
-		
-	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
-	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
-	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
-	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageTest"
 		class="Manage.ManageTest" scope="session"></jsp:useBean>
-	
 	
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
@@ -46,38 +36,39 @@
 			</ol>
 		</div>
 	
-		<center>Dostępne testy: </center>
-		<center>
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Temat</th>
-						<th>Opis</th>
-					</tr>
-					
-					<c:forEach var="Test" items="${ManageTest.ListTest()}">
-						<tr>
-							<td><a href="SelectedTestSend?test_ID=${Test.testID}">${Test.testID}</a></td>
-<%-- 							<td>${Test.testID}</td> --%> <!-- co to jest? -->
-							<td>${Test.description.topic}</td>
-							<td>${Test.description.description}</td>
-						</tr>					
-      				</c:forEach>      				
-				</table>
-		</center>
+	<div class="content">
+		Wprowadz dane nowego pytania: <br />
+		<form action="CreateQuestionNew">
+		    Podaj pytanie: <br />
+		    <input type="text" name="question" /><br /> 
+		    Wybierz rodzaj pytania:
+		     <select name="rodzaj">
+			  <option value="open">Otwarte</option>
+			  <option value="close">Zamknięte</option>
+			</select> <br />
+		    Podaj poprawną odpowiedz: <br />
+		    <input type="text" name="odpA" /><br />
+		    Podaj inne niepoprawne odpowiedzi, jeśli ma być to pytanie zamknięte: <br />
+		    <input type="text" name="odpB" /><br /> 
+		    <input type="text" name="odpC" /><br /> 
+		    <input type="text" name="odpD" /><br /> 
+		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Utwórz pytanie">
+		</form>
+	</div>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
-		<center>Proszę się zalogować.</center>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-	
 </div>
 
 </body>

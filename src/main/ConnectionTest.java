@@ -143,7 +143,7 @@ public class ConnectionTest {
 		answers.add(Answer3);
 		answers.add(Answer4);
 		
-		answerManager.UpdateAnswer(3, "odp3",null);
+		answerManager.UpdateAnswer(3,null);
 		answerManager.DeleteAnswer(5);
 		answerManager.ListAnswers();
 //------ANSWER--------------------------------------------------------------//

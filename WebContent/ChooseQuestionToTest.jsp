@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +26,7 @@
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
+	
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageTest"
@@ -40,15 +39,16 @@
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageQuestion" class="Manage.ManageQuestion" scope="session"></jsp:useBean>
 	
-	
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona glowna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/ViewUser.jsp">Profil</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewQuestion.jsp">Nowe pytania</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
 			</ol>
 		</div>
 
@@ -66,17 +66,17 @@
 			                <td>${Question.question}</td>
 <%-- 			                <td>${Question.answers}</td> --%>
 							<td></td>
-							<form action="CreateTestNew">
+							<form action="AddQuestionToTest">
 		        				<td><input type="submit" value="Dodaj pytanie">  </td>
 		        				<input type="hidden" name="question_ID" value=${Question.questionID} />
-		        				<input type="hidden" name="test_ID" value=${Test.testID} /> <!-- zobaczyć czy dobrze się wysyłą -->
+		        				<input type="hidden" name="test_ID" value=<%= request.getAttribute("testID") %> /> <!-- zobaczyć czy dobrze się wysyłą -->
 							</form>
 			        	</tr>
 					</c:forEach>
 				</table>
 		</center>
 		<center>
-			<form action="CreateTestNew">
+			<form action="CreateNewTest.jsp">
 				<input type="submit" value="Utwórz test">
 			</form>
 		</center>
