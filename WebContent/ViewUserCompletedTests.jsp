@@ -18,15 +18,9 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="CompletedTest"
-		class="database.entities.CompletedTest" scope="session"></jsp:useBean>
-		<jsp:setProperty property="*" name="CompletedTest" />
 		
-			<jsp:useBean id="ManageCompletedTest"
-		class="Manage.ManageCompletedTest" scope="session"></jsp:useBean>
-		<jsp:setProperty property="*" name="ManageCompletedTest" />
+	<jsp:useBean id="ManageCompletedTest" class="Manage.ManageCompletedTest" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="ManageCompletedTest" />
 		
 	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
 	<jsp:setProperty property="*" name="User" />
@@ -52,7 +46,7 @@
 						<th>ID  </th>
 						<th>Punkty  </th>
 			        	<th>Procent opanowania  </th>
-			        <c:forEach items="${ManageCompletedTest.ListUserTests(Integer.parseInt(userID))}" var="CompletedTest">
+			        <c:forEach items="${ManageCompletedTest.ListUserCompletedTest(Integer.parseInt(userID))}" var="CompletedTest">
 			        	<tr>
 			        		<td>${CompletedTest.completedtestID}</td>
 			                <td>${CompletedTest.result.points}</td>
