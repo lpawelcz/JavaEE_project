@@ -8,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Tworzenie nowego pytania</title>
+	<title>Uzytkownik</title>
 </head>
 <body>
 <div class="wrapper">
@@ -25,7 +25,7 @@
 		class="Manage.ManageTest" scope="session"></jsp:useBean>
 	
 	<!-- session.getAttribute("session") -->
-	<% if("TRUE" == "TRUE")
+	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
@@ -48,7 +48,7 @@
 			<input type="submit" value="Wyświetl stworzone testy">
 		</form>
 		
-		<form action="CreateQuestionNew">
+		<form action="ViewUserQuestions.jsp">
 			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
 			<input type="submit" value="Wyświetl stworzone pytania">
 		</form>

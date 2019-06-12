@@ -8,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Uzytkownik</title>
+	<title>Stworzone pytania</title>
 </head>
 <body>
 <div class="wrapper">
@@ -21,8 +21,8 @@
 	</div>
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="ManageTest"
-		class="Manage.ManageTest" scope="session"></jsp:useBean>
+	<jsp:useBean id="ManageQuestion"
+		class="Manage.ManageQuestion" scope="session"></jsp:useBean>
 		
 	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
 	<jsp:setProperty property="*" name="User" />
@@ -39,25 +39,22 @@
 			</ol>
 		</div>
 		
-		Stworzone testy przez użytkownika: <br />
+		Stworzone pytania przez użytkownika: <br />
 		<center>
 				<table>
 					<tr>
 						<th>ID  </th>
-						<th>Temat  </th>
-						<th>Opis  </th>
-			        
-			        <c:forEach items="${ManageTest.ListUserTests(User.userID)}" var="Test">
+						<th>Typ pytania  </th>
+			        	<th>Pytanie  </th>
+			        <c:forEach items="${ManageQuestion.ListUserQuestions(User.userID)}" var="Question">
 			        	<tr>
-			        		<td>${Test.testID}</td>
-			                <td>${Test.description.topic}</td>
-			                <td>${Test.description.description}</td>
-							<td></td>
+			        		<td>${Question.questionID}</td>
+			                <td>${Question.DTYPE}</td>
+			                <td>${Question.question}</td>
 			        	</tr>
 					</c:forEach>
 				</table>
 		</center>
-	
 		
 	<% } 
 	else { %>

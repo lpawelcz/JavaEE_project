@@ -8,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Tworzenie nowego pytania</title>
+	<title>Ukończone pytania</title>
 </head>
 <body>
 <div class="wrapper">
@@ -28,7 +28,7 @@
 	<jsp:setProperty property="*" name="User" />
 	
 	<!-- session.getAttribute("session") -->
-	<% if("TRUE" == "TRUE")
+	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
