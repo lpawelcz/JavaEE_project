@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Uzytkownik</title>
+	<title>Użytkownik</title>
 </head>
 <body>
 <div class="wrapper">
@@ -36,18 +36,18 @@
 	
 	<div class="content">
 		Informacje o użytkowniku: <br />
-		<form action="ViewUserCompletedTests.jsp">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+		<form action="ViewUserCompletedTests.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />   --%>
 			<input type="submit" value="Wyświetl zrobione testy">
 		</form>
 		
-		<form action="ViewUserTests.jsp">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+		<form action="ViewUserTests.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID?userID=${userID}" value=<%=session.getAttribute("userID") %> /><br />   --%>
 			<input type="submit" value="Wyświetl stworzone testy">
 		</form>
 		
-		<form action="ViewUserQuestions.jsp">
-			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+		<form action="ViewUserQuestions.jsp?userID=${userID}">
+<%-- 			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />   --%>
 			<input type="submit" value="Wyświetl stworzone pytania">
 		</form>
 	</div>

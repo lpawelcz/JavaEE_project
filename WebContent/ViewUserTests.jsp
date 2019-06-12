@@ -27,8 +27,6 @@
 	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
 	<jsp:setProperty property="*" name="User" />
 	
-	<jsp:useBean id="Test" class="database.entities.Test" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="Test" />
 	
 	<!-- session.getAttribute("session") -->
 	<% if(session.getAttribute("session") == "TRUE")
@@ -48,8 +46,7 @@
 						<th>ID  </th>
 						<th>Temat  </th>
 						<th>Opis  </th>
-			        
-			        <c:forEach items="${ManageTest.ListUserTests(User.userID)}" var="Test">
+			        <c:forEach items="${ManageTest.ListUserTests(Integer.parseInt(userID))}" var="Test">
 			        	<tr>
 			        		<td>${Test.testID}</td>
 			                <td>${Test.description.topic}</td>
