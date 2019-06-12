@@ -31,21 +31,26 @@ public class ProcessCompletedTest extends HttpServlet {
 		ManageResult ResultManager = new ManageResult();
 		ManageTest TestManager = new ManageTest();
 		ManageUser UserManager = new ManageUser();
-		ManageQuestionInTest QuestionInTestManager = new ManageQuestionInTest();
+		//ManageQuestionInTest QuestionInTestManager = new ManageQuestionInTest();
+		ManageQuestion QuestionManager = new ManageQuestion();
+		ManageAnswer AnswerManager = new ManageAnswer();
+		 
 		
-		
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/plain");
+       // PrintWriter out = response.getWriter();
+        //response.setContentType("text/plain");
         
 		Enumeration<String> parameterNames = request.getParameterNames();
 		HttpSession session = request.getSession(true);
 		String userID = session.getAttribute("userID").toString();
 		String testID;
 		String paramValue = null;
+		int question_cnt = 0;
+		ArrayList<String> questionID = new ArrayList<String>();
 		ArrayList<String> Values = new ArrayList<String>();
         while (parameterNames.hasMoreElements()) {
  
             String paramName = parameterNames.nextElement();
+            questionID.add(paramName);
         //    out.write("paramName: " + paramName);
         //    out.write("\nparamValues: ");
  
@@ -57,16 +62,21 @@ public class ProcessCompletedTest extends HttpServlet {
             }
             Values.add(paramValue);
         //    out.write("\n\n");
+            question_cnt++;
         }
         testID = paramValue;
         
         Test test = TestManager.GetTest(Integer.parseInt(testID));
        // out.println(test);
-        List<QuestionInTest> questionInTest = QuestionInTestManager.ListTestQuestionInTest(Integer.parseInt(testID));
         List<Question> questions = new ArrayList<Question>();
-        for (int i=0;i<questionInTest.size();i++) {
-        	questions.add(questionInTest.get(i).getQuestion());
+        for(int i=0;i<question_cnt-1;i++){
+        	questions.add(QuestionManager.GetQuestion(Integer.parseInt(questionID.get(i))));
+        //	out.println(questions.get(i).getQuestionID());
         }
+//        List<QuestionInTest> questionInTest = QuestionInTestManager.ListTestQuestionInTest(Integer.parseInt(testID));
+//        for (int i=0;i<questionInTest.size();i++) {
+//        	questions.add(questionInTest.get(i).getQuestion());
+//        }
 //        List<Question> questions = test.getQuestions();
         //out.println(questions);
         float points = 0;
@@ -81,28 +91,30 @@ public class ProcessCompletedTest extends HttpServlet {
         		{
         			points++;
         			questionMap[i]=true;
-        			out.println("poprawna");
+        			//out.println("poprawna");
         		}
         		else
         		{
-        			out.println("bledna");
+        			//out.println("bledna");
         		}
         	}
         	else								// pytanie otwarte
         	{
-        		if(Values.get(i).equals(questions.get(i).getAnswers().get(0).getAnswer()))	// poprawna odpowiedz -  string odpowiedzi zawiera siê w poprawnej odpowiedzi
+        		Answer correctOpenQuestionAnswer = AnswerManager.GetAnswer(questions.get(i).getCorrectID());
+        		//out.println("\""+Values.get(i)+"\" odpowiedz poprawna: \""+correctOpenQuestionAnswer.getAnswer()+"\"question id: "+questions.get(i).getQuestionID()+"\"correct id: "+questions.get(i).getCorrectID());
+        		if(Values.get(i).equals(correctOpenQuestionAnswer.getAnswer()))	// poprawna odpowiedz -  string odpowiedzi zawiera siê w poprawnej odpowiedzi
         		{
         			points++;
         			questionMap[i]=true;
         			
-        			out.println("poprawna");
+        			//out.println("poprawna");
         		}
         		else
         		{
-        			out.println("bledna");
+        			//out.println("bledna");
         		}
         	}
-        	out.println(Values.get(i)+" "+questions.get(i).getAnswers().get(0).getAnswer()+" "+questions.get(i).getAnswers().get(0).getAnswerID());
+        	//out.println(Values.get(i)+" "+questions.get(i).getAnswers().get(0).getAnswer()+" "+questions.get(i).getAnswers().get(0).getAnswerID());
         }
         prcntgOfUnderstanding = 100*points/maxPoints;
         Result result = new Result(points, prcntgOfUnderstanding);
@@ -110,11 +122,11 @@ public class ProcessCompletedTest extends HttpServlet {
         User user = UserManager.GetUser(Integer.parseInt(userID));
         CompletedTestManager.InsertCompletedTest(user,test,result);
         
-//        request.setAttribute("Result", result);
-//        request.setAttribute("TestID", testID);
-//        request.setAttribute("Questions", questions);
-//        request.setAttribute("QuestionMap", questionMap);
-//        request.getRequestDispatcher("CompletedTest.jsp").forward(request, response);
+        request.setAttribute("Result", result);
+        request.setAttribute("TestID", testID);
+        request.setAttribute("Questions", questions);
+        request.setAttribute("QuestionMap", questionMap);
+        request.getRequestDispatcher("CompletedTest.jsp").forward(request, response);
         
         //out.write("paramName: userID" );
         //out.write("\nparamValues: " + userID);

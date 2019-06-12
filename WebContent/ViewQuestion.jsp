@@ -73,7 +73,7 @@
     						</c:when>    
     						<c:otherwise>
 			        			<c:forEach items="${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}" var="Answer" varStatus="loop2">
-									<input type="radio" name="${QuestionInTest.question.questionID}" value="${loop2.index}" >${Answer.answer}
+									<input type="radio" name="${QuestionInTest.question.questionID}" value="${QuestionInTest.question.correctID}" >${Answer.answer}
 								</c:forEach> 
 									<input type="radio" name="${QuestionInTest.question.questionID}" value="-1" checked="checked" style="display:none" >${Answer.answer}
         						<br />
