@@ -195,6 +195,29 @@ public class ManageQuestion extends Manage {
 			System.out.println("done Read");
 			return tempQuestion;
 		}
+		
+		public Question GetQuestion(String question, int CorrectID) {
+			Question tempQuestion = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempQuestion = (Question) session.createQuery("from Question s where s.question= '"+question + "' s.correctID = '" + Integer.toString(CorrectID)+"'").uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempQuestion;
+		}
 	//----READING DATA-----------------------------------//	
 
 }

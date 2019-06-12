@@ -2,6 +2,7 @@ package pl.javastart.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import database.entities.*;
 @WebServlet("/CreateQuestionNew")
 public class CreateQuestionNew extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ManageAnswer manageAnswer = new ManageAnswer();
+	private ManageAnswer answerManager = new ManageAnswer();
 	private ManageQuestion manageQuestion = new ManageQuestion();
 	private ManageUser manageUser = new ManageUser();
 	public Question questionQ;
@@ -36,8 +37,12 @@ public class CreateQuestionNew extends HttpServlet {
 		String odpC = request.getParameter("odpC");
 		String odpD = request.getParameter("odpD");
 		String userID = request.getParameter("user_ID");
+		List<Answer> answers = new ArrayList<Answer>();
+		Answer CorrectAnswer = null;
+		Answer Answer2 = null;
+		Answer Answer3 = null;
+		Answer Answer4 = null;
 		boolean isPublic = false;
-		List<Answer> answers = null;
 		int dType = 1;
 		
 		if(rodzaj == "open")
@@ -53,9 +58,57 @@ public class CreateQuestionNew extends HttpServlet {
 		
 		try
 		{
+			//String answer, Question question
+			answerManager.InsertAnswer(odpA,null);
+			answerManager.InsertAnswer(odpB,null);
+			answerManager.InsertAnswer(odpC,null);
+			answerManager.InsertAnswer(odpD,null);
+			
+			CorrectAnswer = answerManager.GetAnswer(odpA);
+			Answer2 = answerManager.GetAnswer(odpB);
+			Answer3 = answerManager.GetAnswer(odpC);
+			Answer4 = answerManager.GetAnswer(odpD);
+			
+			answers.add(CorrectAnswer);
+			answers.add(Answer2);
+			answers.add(Answer3);
+			answers.add(Answer4);
+			
+			
+//			manageAnswer.InsertAnswer(answerA.getAnswer(), questionQ);
+//			manageAnswer.InsertAnswer(answerB.getAnswer(), questionQ);
+//			manageAnswer.InsertAnswer(answerC.getAnswer(), questionQ);
+//			manageAnswer.InsertAnswer(answerD.getAnswer(), questionQ);
+//			
+//			answerA = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerA.getAnswer());
+//			answerB = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerB.getAnswer());
+//			answerC = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerC.getAnswer());
+//			answerD = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerD.getAnswer());
+//			
+//			
+//			questionQ.setAnswers(answers);
+//			questionQ.setCorrectID(answerA.getAnswerID());
+//			
+//			manageQuestion.UpdateQuestion(questionQ.getQuestionID(), questionQ.getQuestion(), questionQ.getAnswers(), questionQ.getCorrectID());
+			
+		}catch(Exception e){
+			System.out.println("Problem z stworzeniem nowych odpowiedzi w bazie.");
+		}
+		
+		try
+		{
 			//int DTYPE, User author, String question, List<Answer> answers, int correctID
-			questionQ = new Question(dType, user, question, answers, 0);
-			manageQuestion.InsertQuestion(dType, user, question, answers, 0);
+			manageQuestion.InsertQuestion(dType, user, question, answers, CorrectAnswer.getAnswerID());
+			questionQ = manageQuestion.GetQuestion(question, CorrectAnswer.getAnswerID());
+			
+			answerManager.UpdateAnswer(CorrectAnswer.getAnswerID(), null, questionQ);
+			answerManager.UpdateAnswer(Answer2.getAnswerID(), null, questionQ);
+			answerManager.UpdateAnswer(Answer3.getAnswerID(), null, questionQ);
+			answerManager.UpdateAnswer(Answer4.getAnswerID(), null, questionQ);
+			
+			
+			
+			
 		}catch(Exception e){
 			System.out.println("Problem z stworzeniem nowego pytania w bazie.");
 		}
@@ -76,37 +129,7 @@ public class CreateQuestionNew extends HttpServlet {
 		}
 		
 		
-		try
-		{
-			//String answer, Question question
-			answerA = new Answer(odpA, questionQ);
-			answerB = new Answer(odpB, questionQ);
-			answerC = new Answer(odpC, questionQ);
-			answerD = new Answer(odpD, questionQ);
-			
-			manageAnswer.InsertAnswer(answerA.getAnswer(), questionQ);
-			manageAnswer.InsertAnswer(answerB.getAnswer(), questionQ);
-			manageAnswer.InsertAnswer(answerC.getAnswer(), questionQ);
-			manageAnswer.InsertAnswer(answerD.getAnswer(), questionQ);
-			
-			answerA = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerA.getAnswer());
-			answerB = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerB.getAnswer());
-			answerC = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerC.getAnswer());
-			answerD = manageAnswer.GetAnswer(questionQ.getQuestionID(), answerD.getAnswer());
-			
-			answers.add(answerA);
-			answers.add(answerB);
-			answers.add(answerC);
-			answers.add(answerD);
-			
-			questionQ.setAnswers(answers);
-			questionQ.setCorrectID(answerA.getAnswerID());
-			
-			manageQuestion.UpdateQuestion(questionQ.getQuestionID(), questionQ.getQuestion(), questionQ.getAnswers(), questionQ.getCorrectID());
-			
-		}catch(Exception e){
-			System.out.println("Problem z stworzeniem nowych odpowiedzi w bazie.");
-		}
+		
 		
 		//tutaj jakieœ przekierowanie do strony z list¹ pytañ
 		request.getRequestDispatcher("CreateNewQuestion.jsp").forward(request, response);

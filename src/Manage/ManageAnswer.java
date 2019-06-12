@@ -166,6 +166,29 @@ public class ManageAnswer extends Manage {
 			return tempAnswer;
 		}
 		
+		public Answer GetAnswer(String answer) {
+			Answer tempAnswer = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.answer=\'" + answer + "\'").uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempAnswer;
+		}
+		
 		public Answer GetAnswer(int questionID, String answer) {
 			Answer tempAnswer = null;
 			session = factory.getCurrentSession();
