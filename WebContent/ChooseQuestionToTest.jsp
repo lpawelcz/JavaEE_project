@@ -26,7 +26,7 @@
 	<!-- Użycie tagu jsp:setProperty. Tag ten umieszcza wszystkie parametry
 	przesyłane z innych plików jsp pasujące do obiektu o nazwie user. Jeśli
 	parametry te nie będą się zgadzać, tomcat wyrzuci wyjątkiem -->
-	<jsp:setProperty property="*" name="Test" />
+	
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageTest"
@@ -38,7 +38,6 @@
 	
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageQuestion" class="Manage.ManageQuestion" scope="session"></jsp:useBean>
-	
 	
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
@@ -70,14 +69,14 @@
 							<form action="AddQuestionToTest">
 		        				<td><input type="submit" value="Dodaj pytanie">  </td>
 		        				<input type="hidden" name="question_ID" value=${Question.questionID} />
-		        				<input type="hidden" name="test_ID" value=${Test.testID} /> <!-- zobaczyć czy dobrze się wysyłą -->
+		        				<input type="hidden" name="test_ID" value=<%= request.getAttribute("testID") %> /> <!-- zobaczyć czy dobrze się wysyłą -->
 							</form>
 			        	</tr>
 					</c:forEach>
 				</table>
 		</center>
 		<center>
-			<form action="CreateTestNew">
+			<form action="CreateNewTest.jsp">
 				<input type="submit" value="Utwórz test">
 			</form>
 		</center>
