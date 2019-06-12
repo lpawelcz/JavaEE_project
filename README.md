@@ -4,4 +4,4 @@ Uruchomienie jak w: https://javastart.pl/baza-wiedzy/java-ee/pierwszy-servlet-he
 
 JSP: https://javastart.pl/baza-wiedzy/java-ee/jsp-dynamiczne-strony-www
 
-dany bazych: https://javastart.pl/baza-wiedzy/java-ee/jdbc-podstawy-pracy-z-baza-danych
+bazy danych: https://javastart.pl/baza-wiedzy/java-ee/jdbc-podstawy-pracy-z-baza-danych
