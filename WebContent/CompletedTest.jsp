@@ -13,7 +13,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
 	
-	<title>Pytania</title>
+	<title>Podsumowanie rozwiązanego testu</title>
 </head>
 <body>
 <div class="wrapper">
@@ -24,23 +24,7 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<!-- To jest tak jakby deklaracja zmiennej Test -->
-	<jsp:useBean id="QuestionInTest" class="database.entities.QuestionInTest" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="QuestionInTest" />
-	
-	<jsp:useBean id="Question" class="database.entities.Question" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="Question" />
-		
-	<jsp:useBean id="test" class="database.entities.Test" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="test" />
-	
-	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
-	<jsp:useBean id="ManageQuestionInTest" class="Manage.ManageQuestionInTest" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="ManageQuestionInTest" />
-	
-	<jsp:useBean id="Answer" class="database.entities.Answer" scope="session"></jsp:useBean>
-	<jsp:setProperty property="*" name="Answer" />
+
 	
 	
 	<% if(session.getAttribute("session") == "TRUE")
@@ -53,9 +37,11 @@
 			</ol>
 		</div>
 	
-		<center>Powodzenia! </center>
-		ID testu: ${test.testID} <br />
-		Liczba Pytań: ${ManageQuestionInTest.ListTestQuestionInTest(test.testID).size()} <br />
+		<center>Test zakończony, oto wyniki</center>
+		ID testu: ${RestID} <br />
+		Liczba Pytań: ${Questions.size()} <br />
+		Uzyskany wynik: ${Result.points} <br />
+		Procent opanowania materiału: ${Result.prcntgOfUnderstanding} <br />
 		<center>
 	<form method="post" action="ProcessCompletedTest">		        
 				<table>
@@ -64,19 +50,14 @@
 <!-- 						<th>Odpowiedzi  </th> -->
 <!-- 						<th>Odpowiedź  </th> -->
 <!-- 						<th>Sprawdź  </th> -->
-			        <c:forEach items="${ManageQuestionInTest.ListTestQuestionInTest(test.testID)}" var="QuestionInTest" varStatus="loop1">
-<%-- 			        <p>${QuestionInTest.question.questionID}.${QuestionInTest.question.question}</p> 		<%--	ID testu													--%>
-			        	<p>${loop1.index+1}.${QuestionInTest.question.question}</p>			<%-- numer pytania w teście --%>
+			        <c:forEach items="${Questions}" var="QuestionInTest" varStatus="loop1">
+			        	<p>${loop1.index+1}.${QuestionInTest.question}</p>			<%-- numer pytania w teście --%>
 						<c:choose>
-   							<c:when test="${QuestionInTest.question.DTYPE == '2'}">
-   								odp: <input type="text" name="${QuestionInTest.question.questionID}" />
+   							<c:when test="${QuestionMap[loop1.index]}">
+   								Odpowiedz poprawna
     						</c:when>    
     						<c:otherwise>
-			        			<c:forEach items="${QuestionInTest.question.getAnswers(QuestionInTest.question.questionID)}" var="Answer" varStatus="loop2">
-									<input type="radio" name="${QuestionInTest.question.questionID}" value="${QuestionInTest.question.correctID}" >${Answer.answer}
-								</c:forEach> 
-									<input type="radio" name="${QuestionInTest.question.questionID}" value="-1" checked="checked" style="display:none" >${Answer.answer}
-        						<br />
+			        			Odpowiedz błędna
     						</c:otherwise>
 						</c:choose>		        	
 						<br><br>
