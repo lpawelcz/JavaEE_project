@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,17 +7,25 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Potwierdzenie rejestracji</title>
+	<title>Ukończone pytania</title>
 </head>
 <body>
 <div class="wrapper">
+
 	<div class="header">
 		<div class="logo">
 			<span style="color: #c34f4f">Bash</span>ownik
 			<div style="clear:both;"></div>
 		</div>
 	</div>
+		
+	<jsp:useBean id="ManageCompletedTest" class="Manage.ManageCompletedTest" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="ManageCompletedTest" />
+		
+	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="User" />
 	
+	<!-- session.getAttribute("session") -->
 	<% if(session.getAttribute("session") == "TRUE")
 	{ %>
 		<div class="nav">
@@ -29,6 +38,25 @@
 					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
 			</ol>
 		</div>
+		
+		Ukończone testy przez użytkownika: <br />
+		<center>
+				<table>
+					<tr>
+						<th>ID  </th>
+						<th>Punkty  </th>
+			        	<th>Procent opanowania  </th>
+			        <c:forEach items="${ManageCompletedTest.ListUserCompletedTest(Integer.parseInt(userID))}" var="CompletedTest">
+			        	<tr>
+			        		<td>${CompletedTest.completedtestID}</td>
+			                <td>${CompletedTest.result.points}</td>
+			                <td>${CompletedTest.result.prcntgOfUnderstanding}</td>
+			        	</tr>
+					</c:forEach>
+				</table>
+		</center>
+	
+		
 	<% } 
 	else { %>
 		<div class="nav">
@@ -38,32 +66,9 @@
 					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
 			</ol>
 		</div>
+		<center>Do stworzenia nowego testu proszę być zalogowanym.</center>
 	<% } %>
-	
-<div class="content">
-<form method="post" action="Login.jsp">
-	<jsp:useBean id="user" class="database.entities.User"
-		scope="session"></jsp:useBean>
-
-	<jsp:setProperty property="*" name="user" />
-
-	<jsp:useBean id="dataSource"
-		class="main.DataSource" scope="session"></jsp:useBean>
-
-	<!-- Wyświetlenie nazwy użytkownika. -->
-	Login: <%= user.getName() %><br />
-	Hasło: <%= user.getPassword() %><br />
-
-	<!-- Logika sprawdzająca poprawność parametrów logowania. -->
-	<% 
-
-		dataSource.register(user.getName(), user.getPassword());
-	%>
-	
-	<form action="http://localhost:8080/Bashownik/Login.jsp">
-	<input type="submit" value="Login" /></form>
-</form>
 </div>
-</div>
+
 </body>
 </html>

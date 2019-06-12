@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
@@ -19,15 +17,6 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	<div class="nav">
-		<ol>
-				<li><a href="http://localhost:8080/Bashownik/">Strona glowna</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-				<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-		</ol>
-	</div>
-
 
 <div class="content">
 	<!-- Użycie tagu jsp:useBean. Tag ten szuka obiektu klasy User z pakiecie
@@ -44,21 +33,74 @@
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="dataSource"
 		class="main.DataSource" scope="session"></jsp:useBean>
+		
+	<jsp:useBean id="userManage"
+		class="Manage.ManageUser" scope="session"></jsp:useBean>
 
-	<!-- Wyświetlenie nazwy użytkownika. -->
-	Nazwa: <%= user.getName() %><br />
-	pass: <%= user.getPassword() %><br />
-
-	<!-- Logika sprawdzająca poprawność parametrów logowania. -->
-	<% String result = "Dane niepoprawne - BLAD";
-
-	if(dataSource.userInData(user)) {
-		result = "Poprawny uzytkownik oraz haslo - ZALOGOWANO";
-		}
-	%>
-
-	<!-- Zwrócenie wynikowego stringa "result" -->
-	<%= result %>
+	<% if(session.getAttribute("session") == "TRUE")
+	{ %>
+		<div class="nav">
+			<ol>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/ViewUser.jsp">Profil</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewQuestion.jsp">Nowe pytania</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
+			</ol>
+		</div>
+		
+		<center>Nastąpiło wylogowanie.</center>
+		
+		<%
+			session.setAttribute("session","False"); 
+			session.setAttribute("userID", "");
+			session.setAttribute("userName", "");
+		%>
+	<% } 
+	else { %>
+	<%
+		String result = "";
+		System.out.println("User w validate: " + user.getUserID() + " ," + user.getName());
+		if(dataSource.userInData(user)) {
+			result = "Poprawny użytkownik oraz hasło- ZALOGOWANO";
+			session.setAttribute("session","TRUE"); 
+			user = userManage.GetUser(user.getName());
+			String id = Integer.toString(user.getUserID());
+			session.setAttribute("userID", id);
+			session.setAttribute("userName", user.getName());
+		%>
+			<div class="nav">
+				<ol>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/ViewUser.jsp">Profil</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewQuestion.jsp">Nowe pytania</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
+				</ol>
+			</div>
+		<% }
+		else { %>
+			<div class="nav">
+				<ol>
+					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
+				</ol>
+			</div>
+			
+			<% result = "Dane niepoprawne - BLAD";%>
+		<% }%>
+		
+		<!-- Wyświetlenie nazwy użytkownika. -->
+		Nazwa: <%= user.getName() %><br />
+		pass: <%= user.getPassword() %><br />
+		ID : <%= user.getUserID() %><br />
+	
+		
+		<%= result %>
+	<% } %>
 </div>
 </div>
 </body>

@@ -55,7 +55,7 @@ public class MainServlet extends HttpServlet {
 				"				<li><a href=\"http://localhost:8080/Bashownik/Login.jsp\">Zaloguj</a></li>\r\n" + 
 				"				<li><a href=\"http://localhost:8080/Bashownik/Register.jsp\">Rejestracja</a></li>\r\n" + 
 				"		</ol>\r\n" + 
-				"	</div>" +
+				"	</div>" +				
 				"   <div class=\"content\">");
 		out.append("<form action=\"http://localhost:8080/Bashownik/Register.jsp\">\r\n" + 
 				"    <input type=\"submit\" value=\"Rejestracja\" />\r\n" + 

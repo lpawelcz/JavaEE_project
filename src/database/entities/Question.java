@@ -1,10 +1,12 @@
 package database.entities;
 
 import java.util.ArrayList;
+import Manage.ManageAnswer;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Question {
 	
+//	public Question(int DTYPE, User author, String question, int correctID) {
+//		this.DTYPE = DTYPE;
+//		this.author = author;
+//		this.question = question;
+//		this.correctID = correctID;
+//	}
 	public Question(int DTYPE, User author, String question, List<Answer> answers, int correctID) {
 		this.DTYPE = DTYPE;
 		this.author = author;
@@ -39,14 +47,20 @@ public class Question {
 	@Column(name = "question")
 	private String question;
 	
-	@OneToMany
-	@JoinColumn(name = "answerID")
+	@OneToMany(mappedBy = "answerID", fetch = FetchType.EAGER)
 	private List<Answer> answers = new ArrayList<Answer>();
 	
 	private int correctID;
 	
-	public List<Answer> getAnswers() {
+	public List<Answer> getAnswers(int questionID)
+	{
+		ManageAnswer answerManager = new ManageAnswer();
+		answers = answerManager.ListQuestionAnswers(questionID);
 		return answers;
+	}
+	
+	public List<Answer> getAnswers() {
+		return answers;	
 	}
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
@@ -82,9 +96,12 @@ public class Question {
 		this.question = question;
 	}
 	@Override
+//	public String toString() {
+//		return "Question [questionID=" + questionID + ", author=" + author.getName() + ", question=" + question + ", correctID=" + correctID+ ", DTYPE=" + DTYPE + "]";
+//	}
 	public String toString() {
-		return "Question [questionID=" + questionID + ", author=" + author + ", question=" + question + ", answers="
-				+ answers + ", correctID=" + correctID + "]";
+		return "Question [questionID=" + questionID + ", author=" + author.getName() + ", question=" + question + ", answers="
+				+ answers + ", correctID=" + correctID+ ", DTYPE=" + DTYPE + "]";
 	}
 	
 }

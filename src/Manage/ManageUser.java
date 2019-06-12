@@ -87,6 +87,9 @@ public class ManageUser extends Manage
 	
 //----READING DATA-----------------------------------//
 	public List<User> ListUser() {
+		
+		System.out.println("manage user: list user");
+		
 		List<User> allUsers = null;
 		session = factory.getCurrentSession();
 		Transaction transaction = null;
@@ -96,7 +99,7 @@ public class ManageUser extends Manage
 			allUsers = session.createQuery("from User").getResultList();
 
 			for (User tempUser : allUsers) {
-				System.out.println(tempUser.getName());
+				System.out.println(tempUser);
 			}
 			
 			transaction.commit();

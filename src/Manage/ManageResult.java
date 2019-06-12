@@ -1,12 +1,12 @@
 package Manage;
 
-import java.util.Formatter;
 import java.util.List;
 
 import org.hibernate.Transaction;
 
 
 import database.entities.Result;
+import database.entities.Test;
 
 public class ManageResult extends Manage {
 	//----INSERTING DATA---------------------------------//
@@ -19,6 +19,27 @@ public class ManageResult extends Manage {
 			try {
 				transaction = session.beginTransaction();
 				session.save(tempResult);
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Inserting");
+			return 0;
+	}
+	public int InsertResult(Result result) {
+
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				session.save(result);
 				transaction.commit();
 			} catch (Exception e) {
 				if (transaction != null) {
@@ -97,7 +118,7 @@ public class ManageResult extends Manage {
 				allResults = session.createQuery("from Result").getResultList();
 
 				for (Result tempResult : allResults) {
-					System.out.println(String.format("ResultID: %s points: %f prcntgOfUnderstanding: %f", tempResult.getResultID(), tempResult.getPoints(), tempResult.getPrcntgOfUnderstanding()));
+					System.out.println(tempResult);
 				}
 				
 				transaction.commit();
@@ -112,6 +133,29 @@ public class ManageResult extends Manage {
 
 			System.out.println("done Listing");
 			return allResults;
+		}
+		
+		public Result GetResult(int resultID) {
+			Result tempResult = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempResult = (Result) session.createQuery("from Result s where s.resultID=" + Integer.toString(resultID)).uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempResult;
 		}
 	//----READING DATA-----------------------------------//	
 

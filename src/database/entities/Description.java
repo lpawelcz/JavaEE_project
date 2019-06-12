@@ -28,6 +28,12 @@ public class Description {
 	@Column(name = "description")
 	private String description;
 	
+	public int getDescID() {
+		return descID;
+	}
+	public void setDescID(int descID) {
+		this.descID = descID;
+	}
 	public String getTopic() {
 		return topic;
 	}

@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href="kurs_css3/css/fontello.css" rel="stylesheet" type="text/css" />
-	<title>Rejestracja</title>
+	<meta charset="utf-8">
+	<title>Wylogowano</title>
 </head>
-<body> 
+<body>
 <div class="wrapper">
 
 	<div class="header">
@@ -17,41 +17,30 @@
 			<div style="clear:both;"></div>
 		</div>
 	</div>
-	
-	
 
-	<% if(session.getAttribute("session") == "TRUE")
-	{ %>
+<div class="content">
+
 		<div class="nav">
 			<ol>
 					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testów</a></li>
 					<li><a href="http://localhost:8080/Bashownik/Logout.jsp">Wyloguj</a></li>
+					<li><a href="http://localhost:8080/Bashownik/ViewUser.jsp">Profil</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewQuestion.jsp">Nowe pytania</a></li>
+					<li><a href="http://localhost:8080/Bashownik/CreateNewTest.jsp">Nowe testy</a></li>
 			</ol>
 		</div>
-		<center>Podczas zalogowanej sesji nie można się zarejestrować.</center>
-	<% } 
-	else { %>
-		<div class="nav">
-			<ol>
-					<li><a href="http://localhost:8080/Bashownik/Index.jsp">Strona główna</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Login.jsp">Zaloguj</a></li>
-					<li><a href="http://localhost:8080/Bashownik/Register.jsp">Rejestracja</a></li>
-			</ol>
-		</div>
-	
-		<div class="content">
-		  <form method="post" action="SubmitRegistration.jsp">
-		        Podaj swoj login: <br />
-		        <input type="text" name="name" /><br /> 
-		        Podaj swoje haslo: <br />
-		        <input type="text" name="password" /><br /> 
-		        <input type="submit" value="Zarejestruj">
-		    </form>
-		 </div>
-	<% } %>
+		
+		<center>Nastąpiło wylogowanie.</center>
+		
+		<%
+			session.setAttribute("session","False"); 
+			session.setAttribute("userID", "");
+			session.setAttribute("userName", "");
+		%>
 
-	
+		
+</div>
 </div>
 </body>
 </html>

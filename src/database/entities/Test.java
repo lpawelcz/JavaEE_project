@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +28,9 @@ public class Test {
 		this.description = description;
 		this.isPublic = isPublic;
 	}
-	public Test(User author, boolean isPublic) {
+	public Test(User author, Description description, boolean isPublic) {
 		this.author = author;
+		this.description = description;
 		this.isPublic = isPublic;
 	}
 	public Test() {}
@@ -45,8 +47,7 @@ public class Test {
 	@OneToMany(mappedBy = "opinionID")
     private List<Opinion> opinions = new ArrayList<Opinion>();
 	
-	@OneToMany
-	@JoinColumn(name = "questionID")
+	@OneToMany(mappedBy = "questionID")
     private List<Question> questions = new ArrayList<Question>();
 	
 	@OneToOne
@@ -97,7 +98,9 @@ public class Test {
 	
 	@Override
 	public String toString() {
-		return "Test [testID=" + testID + ", author=" + author + ", opinions=" + opinions + ", questions=" + questions
-				+ ", description=" + description + ", isPublic=" + isPublic + "]";
+		System.out.println(author.getName());
+		System.out.println(description.getDescription());
+		System.out.println(isPublic);
+		return "Test [testID=" + testID + ", author=" + author.getName() + ", description=" + description.getDescription() + ", isPublic=" + isPublic + "]";
 	}
 }

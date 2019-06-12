@@ -1,24 +1,24 @@
 package Manage;
 
 import java.util.List;
-
 import org.hibernate.Transaction;
 
 import database.entities.Answer;
-import database.entities.User;
 import database.entities.Question;
+import database.entities.QuestionInTest;
+import database.entities.Test;
 
-public class ManageQuestion extends Manage {
+public class ManageAnswer extends Manage {
 	//----INSERTING DATA---------------------------------//
-		public int InsertQuestion(int DTYPE, User author, String question, List<Answer> answers, int correctID) {
+		public int InsertAnswer(String answer, Question question) {
 
-			Question tempQuestion = new Question(DTYPE, author, question, answers,correctID);
+			Answer tempAnswer = new Answer(answer, question);
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				session.save(tempQuestion);
+				session.save(tempAnswer);
 				transaction.commit();
 			} catch (Exception e) {
 				if (transaction != null) {
@@ -35,20 +35,16 @@ public class ManageQuestion extends Manage {
 	//----INSERTING DATA---------------------------------//	
 		
 	//----UPDATE DATA------------------------------------//
-			public int UpdateQuestion(int questionID, String question, List<Answer> answers, int correctID) {
+			public int UpdateAnswer(int answerID, Question question) {
 
 				session = factory.getCurrentSession();
 				Transaction transaction = null;
 
 				try {
 					transaction = session.beginTransaction();
-					Question tempClosedQuestion = session.get(Question.class, questionID);
+					Answer tempAnswer = session.get(Answer.class, answerID);
 					if(question != null)
-						tempClosedQuestion.setQuestion(question);
-					if(answers != null)
-						tempClosedQuestion.setAnswers(answers);
-					if(correctID != -1)
-						tempClosedQuestion.setCorrectID(correctID);
+						tempAnswer.setQuestion(question);
 	// update smth on object
 					transaction.commit();
 				} catch (Exception e) {
@@ -67,14 +63,14 @@ public class ManageQuestion extends Manage {
 			
 			
 	//----DELETE DATA------------------------------------//
-			public int DeleteQuestion(int questionID) {
+			public int DeleteAnswer(int answerID) {
 
 				session = factory.getCurrentSession();
 				Transaction transaction = null;
 
 				try {
 					transaction = session.beginTransaction();
-					session.createQuery("delete from Question s where s.questionID="+Integer.toString(questionID)).executeUpdate();
+					session.createQuery("delete from Answer s where s.answerID="+Integer.toString(answerID)).executeUpdate();
 					transaction.commit();
 				} catch (Exception e) {
 					if (transaction != null) {
@@ -91,17 +87,17 @@ public class ManageQuestion extends Manage {
 	//----DELETE DATA------------------------------------//
 		
 	//----READING DATA-----------------------------------//
-		public List<Question> ListQuestions() {
-			List<Question> allQuestions = null;
+		public List<Answer> ListAnswers() {
+			List<Answer> allAnswers = null;
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				allQuestions = session.createQuery("from Question").getResultList();
+				allAnswers = session.createQuery("from Answer").getResultList();
 
-				for (Question tempQuestion : allQuestions) {
-					System.out.println(String.format("QuestionID: %s question: %s author_name: %s", tempQuestion.getQuestionID(),tempQuestion.getQuestion(), tempQuestion.getAuthor().getName()));
+				for (Answer tempAnswer : allAnswers) {
+					System.out.println(tempAnswer);
 				}
 				
 				transaction.commit();
@@ -115,21 +111,20 @@ public class ManageQuestion extends Manage {
 			}
 
 			System.out.println("done Listing");
-			return allQuestions;
+			return allAnswers;
 		}
 		
-		
-		public List<Question> ListUserQuestions(int userID) {
-			List<Question> allQuestions = null;
+		public List<Answer> ListQuestionAnswers(int questionID) {
+			List<Answer> allQuestionAnswers = null;
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				allQuestions = session.createQuery("from Question s where s.author.userID ="+Integer.toString(userID)).getResultList();
+				allQuestionAnswers = session.createQuery("from Answer s where s.question.questionID ="+Integer.toString(questionID)).getResultList();
 
-				for (Question tempQuestion : allQuestions) {
-					System.out.println(String.format("QuestionID: %s question: %s author_name: %s", tempQuestion.getQuestionID(),tempQuestion.getQuestion(), tempQuestion.getAuthor().getName()));
+				for (Answer tempQuestionAnswers : allQuestionAnswers) {
+					System.out.println(tempQuestionAnswers);
 				}
 				
 				transaction.commit();
@@ -143,44 +138,17 @@ public class ManageQuestion extends Manage {
 			}
 
 			System.out.println("done Read");
-			return allQuestions;
+			return allQuestionAnswers;
 		}
 		
-		public List<Question> ListUserQuestions(String name) {
-			List<Question> allQuestions = null;
+		public Answer GetAnswer(int asnwerID) {
+			Answer tempAnswer = null;
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				allQuestions = session.createQuery("FROM Question t where t.author.name ='"+name+"'").getResultList();
-
-				for (Question tempQuestion : allQuestions) {
-					System.out.println(String.format("ClosedQuestionID: %s question: %s author_name: %s", tempQuestion.getQuestionID(),tempQuestion.getQuestion(), tempQuestion.getAuthor().getName()));
-				}
-				
-				transaction.commit();
-			} catch (Exception e) {
-				if (transaction != null) {
-					transaction.rollback();
-					throw e;
-				}
-			} finally {
-				session.close();
-			}
-
-			System.out.println("done Read");
-			return allQuestions;
-		}
-		
-		public Question GetQuestion(int questionID) {
-			Question tempQuestion = null;
-			session = factory.getCurrentSession();
-			Transaction transaction = null;
-
-			try {
-				transaction = session.beginTransaction();
-				tempQuestion = (Question) session.createQuery("from Question s where s.questionID=" + Integer.toString(questionID)).uniqueResult();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.answerID=" + Integer.toString(asnwerID)).uniqueResult();
 
 				transaction.commit();
 			} catch (Exception e) {
@@ -193,17 +161,17 @@ public class ManageQuestion extends Manage {
 			}
 
 			System.out.println("done Read");
-			return tempQuestion;
+			return tempAnswer;
 		}
 		
-		public Question GetQuestion(String question, int CorrectID) {
-			Question tempQuestion = null;
+		public Answer GetAnswer(String answer) {
+			Answer tempAnswer = null;
 			session = factory.getCurrentSession();
 			Transaction transaction = null;
 
 			try {
 				transaction = session.beginTransaction();
-				tempQuestion = (Question) session.createQuery("from Question s where s.question='"+question + "' and s.correctID = '" + Integer.toString(CorrectID)+"'").uniqueResult();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.answer=\'" + answer + "\'").uniqueResult();
 
 				transaction.commit();
 			} catch (Exception e) {
@@ -216,7 +184,30 @@ public class ManageQuestion extends Manage {
 			}
 
 			System.out.println("done Read");
-			return tempQuestion;
+			return tempAnswer;
+		}
+		
+		public Answer GetAnswer(int questionID, String answer) {
+			Answer tempAnswer = null;
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				tempAnswer = (Answer) session.createQuery("from Answer s where s.questionID=" + Integer.toString(questionID) + " and s.answer=\'" + answer + "\'").uniqueResult();
+
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Read");
+			return tempAnswer;
 		}
 	//----READING DATA-----------------------------------//	
 
