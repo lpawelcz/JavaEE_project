@@ -81,9 +81,10 @@ public class CreateTestNew extends HttpServlet {
 		}catch(Exception e){
 			System.out.println("Problem ze znalezieniem testu w bazie.");
 		}
-		request.setAttribute("test", test);
+		request.setAttribute("testID", test.getTestID());
 		
-		
+		System.out.println("# " + request.getAttribute("testID"));
+		//System.out.println("% " + request.getAttribute("test") + " | " + request.getAttribute("test").toString());
 		//tutaj jakieœ przekierowanie do strony z list¹ pytañ
 		request.getRequestDispatcher("ChooseQuestionToTest.jsp").forward(request, response);
 	}
