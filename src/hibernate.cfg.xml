@@ -6,7 +6,7 @@
 	<session-factory name="">
 		<!-- JDBC Database connection settings -->
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://192.168.99.100:9001/MySQLJavaProj</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/MySQLJavaProj?serverTimezone=UTC</property>
         <property name="connection.username">root</property>
         <property name="connection.password">admin</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
