@@ -56,7 +56,6 @@
 						<th>Twórca</th>
 						<th>Temat</th>
 						<th>Opis</th>
-						<th>Ilość pytań</th>
 						<th></th>
 					</tr>
 

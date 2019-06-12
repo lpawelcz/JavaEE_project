@@ -57,7 +57,6 @@
 					<tr>
 						<th>ID  </th>
 						<th>Pytanie  </th>
-						<th>Odpowiedzi  </th>
 						<th>Dodaj pytanie do testu  </th>
 			        
 			        <c:forEach items="${ManageQuestion.ListQuestions()}" var="Question">
