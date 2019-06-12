@@ -66,7 +66,7 @@
 			                <td>${Question.question}</td>
 <%-- 			                <td>${Question.answers}</td> --%>
 							<td></td>
-							<form action="CreateTestNew">
+							<form action="AddQuestionToTest">
 		        				<td><input type="submit" value="Dodaj pytanie">  </td>
 		        				<input type="hidden" name="question_ID" value=${Question.questionID} />
 		        				<input type="hidden" name="test_ID" value=${Test.testID} /> <!-- zobaczyć czy dobrze się wysyłą -->
