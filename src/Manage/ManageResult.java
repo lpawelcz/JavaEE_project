@@ -32,6 +32,27 @@ public class ManageResult extends Manage {
 			System.out.println("done Inserting");
 			return 0;
 	}
+	public int InsertResult(Result result) {
+
+			session = factory.getCurrentSession();
+			Transaction transaction = null;
+
+			try {
+				transaction = session.beginTransaction();
+				session.save(result);
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null) {
+					transaction.rollback();
+					throw e;
+				}
+			} finally {
+				session.close();
+			}
+
+			System.out.println("done Inserting");
+			return 0;
+	}
 	//----INSERTING DATA---------------------------------//	
 		
 	//----UPDATE DATA------------------------------------//

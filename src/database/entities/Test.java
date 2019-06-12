@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,8 +47,7 @@ public class Test {
 	@OneToMany(mappedBy = "opinionID")
     private List<Opinion> opinions = new ArrayList<Opinion>();
 	
-	@OneToMany
-	@JoinColumn(name = "questionID")
+	@OneToMany(mappedBy = "questionID")
     private List<Question> questions = new ArrayList<Question>();
 	
 	@OneToOne
