@@ -23,8 +23,12 @@
 	<!-- Ponowne użycie tagu jsp:useBean ładujący źródło danych. -->
 	<jsp:useBean id="ManageTest"
 		class="Manage.ManageTest" scope="session"></jsp:useBean>
+		
+	<jsp:useBean id="User" class="database.entities.User" scope="session"></jsp:useBean>
+	<jsp:setProperty property="*" name="User" />
 	
-	<% if(session.getAttribute("session") == "TRUE")
+	<!-- session.getAttribute("session") -->
+	<% if("TRUE" == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
@@ -34,27 +38,25 @@
 					<li><a href="http://localhost:8080/Bashownik/Tests.jsp">Lista testow</a></li>
 			</ol>
 		</div>
-	
-	<div class="content">
-		Wprowadz dane nowego pytania: <br />
-		<form action="CreateQuestionNew">
-		    Podaj pytanie: <br />
-		    <input type="text" name="question" /><br /> 
-		    Wybierz rodzaj pytania:
-		     <select name="rodzaj">
-			  <option value="open">Otwarte</option>
-			  <option value="close">Zamknięte</option>
-			</select> <br />
-		    Podaj poprawną odpowiedz: <br />
-		    <input type="text" name="odpA" /><br />
-		    Podaj inne niepoprawne odpowiedzi, jeśli ma być to pytanie zamknięte: <br />
-		    <input type="text" name="odpB" /><br /> 
-		    <input type="text" name="odpC" /><br /> 
-		    <input type="text" name="odpD" /><br /> 
-		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Utwórz pytanie">
-		</form>
-	</div>
+		
+		Stworzony test przez użytkownika: <br />
+		<center>
+				<table>
+					<tr>
+						<th>ID  </th>
+						<th>Temat  </th>
+						<th>Opis  </th>
+			        
+			        <c:forEach items="${ManageTest.ListUserTests(User.userID)}" var="Test">
+			        	<tr>
+			        		<td>${Test.testID}</td>
+			                <td>${Test.description.topic}</td>
+			                <td>${Test.description.description}</td>
+							<td></td>
+			        	</tr>
+					</c:forEach>
+				</table>
+		</center>
 	
 		
 	<% } 

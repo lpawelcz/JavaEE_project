@@ -24,7 +24,8 @@
 	<jsp:useBean id="ManageTest"
 		class="Manage.ManageTest" scope="session"></jsp:useBean>
 	
-	<% if(session.getAttribute("session") == "TRUE")
+	<!-- session.getAttribute("session") -->
+	<% if("TRUE" == "TRUE")
 	{ %>
 		<div class="nav">
 			<ol>
@@ -36,23 +37,20 @@
 		</div>
 	
 	<div class="content">
-		Wprowadz dane nowego pytania: <br />
+		Informacje o użytkowniku: <br />
 		<form action="CreateQuestionNew">
-		    Podaj pytanie: <br />
-		    <input type="text" name="question" /><br /> 
-		    Wybierz rodzaj pytania:
-		     <select name="rodzaj">
-			  <option value="open">Otwarte</option>
-			  <option value="close">Zamknięte</option>
-			</select> <br />
-		    Podaj poprawną odpowiedz: <br />
-		    <input type="text" name="odpA" /><br />
-		    Podaj inne niepoprawne odpowiedzi, jeśli ma być to pytanie zamknięte: <br />
-		    <input type="text" name="odpB" /><br /> 
-		    <input type="text" name="odpC" /><br /> 
-		    <input type="text" name="odpD" /><br /> 
-		    <input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
-			<input type="submit" value="Utwórz pytanie">
+			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Wyświetl zrobione testy">
+		</form>
+		
+		<form action="ViewUserTests.jsp">
+			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Wyświetl stworzone testy">
+		</form>
+		
+		<form action="CreateQuestionNew">
+			<input type="hidden" name="user_ID" value=<%=session.getAttribute("userID") %> /><br />  
+			<input type="submit" value="Wyświetl stworzone pytania">
 		</form>
 	</div>
 	
