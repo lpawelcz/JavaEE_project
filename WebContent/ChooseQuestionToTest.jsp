@@ -76,7 +76,7 @@
 				</table>
 		</center>
 		<center>
-			<form action="CreateTestNew">
+			<form action="CreateNewTest.jsp">
 				<input type="submit" value="Utwórz test">
 			</form>
 		</center>
