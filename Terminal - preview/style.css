@@ -1,0 +1,246 @@
+body
+{
+  background-color: #303030;
+  color:#ffffff;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  margin: 0 !important;
+}
+
+.wrapper
+{
+  width: 100%;
+}
+
+.header
+{
+  width: 100%;
+  padding: 40px 0; /*pading w pionie, pading w poziomie*/
+}
+
+.logo
+{
+  width: 450px;
+  font-size: 48px;
+  border: 1px solid #ffffff;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.nav
+{
+  width: 100%;
+  padding: 10px 0;
+  background-color: #cc0000; /*#c34f4f;*/
+  text-align: center;
+  border-top: 1px solid #751b1b;
+  border-bottom: 1px solid #751b1b;
+
+}
+
+.content
+{
+  width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: justify;
+  padding-top:10px;
+}
+
+.socials
+{
+  width:100%;
+  text-align:center;
+  background-color: #292929;
+}
+
+.socialdivs
+{
+  width: 1000px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.fb
+{
+  width: 250px;
+  height: 155px;
+  float:left;
+}
+.fb:hover
+{
+  background-color: #4668b3
+}
+
+.yt
+{
+  width: 250px;
+  height: 155px;
+  float:left;
+}
+.yt:hover
+{
+  background-color: #d94348
+}
+
+.tw
+{
+  width: 250px;
+  height: 155px;
+  float:left;
+}
+.tw:hover
+{
+  background-color: #3095d3
+}
+
+.gplus
+{
+  width: 250px;
+  height: 155px;
+  float:left;
+}
+.gplus:hover
+{
+  background-color: #d95333
+}
+
+.footer
+{
+  text-align:center;
+  background-color:#222222;
+  padding: 30px;
+}
+
+.sticky
+{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index:100; /* odległość od oczu, na osi z, co zasłania menu, pasek ma być cały czas wydoczny*/
+}
+  
+ol
+{
+  padding: 0;
+  margin: 0;
+  list-style-type: none; /*nie chcemy numerowania*/
+  font-size: 18px;
+  height: 35px;
+  line-height: 200%;
+  display: inline-block;/* lista menu zachowuje się jak tekst, text-align:center środkuje, w nav */
+}
+ol a /*stylizacja hiperłącza*/
+{
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+}
+ol > li /* stylizujemy elementy li którego rodzicem jest ol*/
+{
+  float: left;
+  width: 150px;
+  height: 40px;
+  border-right: 1px dashed #751b1b;
+}
+
+ol > li:first-child/*pierwsze dziecko czyli tutaj strona główna*/
+{
+  border-left: 1px dashed #751b1b;
+}
+
+ol > li:hover
+{
+  background-color: #cf6969;
+}
+
+ol > li:hover > a /*stylizacja hiperłącza*/
+{
+    color: #451717;
+}
+
+ol > li > ul 
+{
+  list-style-type: none;
+  padding:0;
+  margin: 0;
+  height: 40px;
+  display: none; /*nie wyświetla wgl listy*/
+}
+
+ol > li:hover > ul
+{
+  display: block;
+}
+
+ol > li > ul > li
+{
+  background-color: #cf6969;
+  position: relative;/*zasłania tekst*/
+  z-index: 100;
+  border-top: 1px dashed #751b1b;
+} 
+
+ol > li > ul > li:hover
+{
+  background-color: #c34f4f;
+}
+ol > li > ul > li:hover > a
+{
+  color: #451717;
+}
+
+#terminal {
+      	position: relative;
+      	font-family: "Courier New";
+		color: white;
+		font-size: 12pt;
+		position: center;
+		outline-style: solid;
+		outline-color: #FFA500;
+		width: 60%;
+    margin: auto;
+ 
+      }
+
+      #input {
+        background: #191970;
+        font-family: monospace;
+        line-height: 50%;
+        color: white;
+        width: 80%;
+      }
+
+      #output {
+        white-space: pre;
+        background-color: #191970;
+        color: white;
+        width: 100%;
+      }
+
+      #input {
+        border: none;
+        font-size: 14pt;
+      }
+
+      #input:focus {
+        outline: none;
+      }
+
+      #input, .input-wrap {
+        color: lime;
+        background-color: #191970;
+        border: none;
+        display: inline-block;
+        font-family: "Courier New";
+        font-size: 12pt;
+      }
+
+      .input-wrap{
+        width: 100%;
+      }
+
+      .error {
+        color: red;
+      }
