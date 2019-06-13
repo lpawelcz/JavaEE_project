@@ -1,1 +1,1 @@
-Mo¿na uruchomiæ lokalnie
+Wersja robocza terminala. Dziala lokalnie.
